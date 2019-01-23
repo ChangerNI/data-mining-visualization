@@ -97,6 +97,6 @@ public class ParseHtmlBlockTask implements Runnable {
     private Product getProduct(String htmlBlock) {
         LinkedList<String> productNameLists = RegUtil.getRegInfoDetails(Constant.OTA_WEB_PRODUCT_REG_PATTERN, htmlBlock);
         LinkedList<String> productDetailsLists = RegUtil.getRegInfoDetails(Constant.OTA_WEB_DETAIL_REG_PATTERN, htmlBlock);
-        return new Product(productNameLists, productDetailsLists);
+        return new Product(productNameLists, productDetailsLists, productEnums.name().toUpperCase());
     }
 }

@@ -15,12 +15,14 @@ public class Product {
     private String sizeType;
     private String unit;
     private String dateTime;
+    private String productType;
 
     public Product() {
     }
 
     public Product(LinkedList<String> productNameLists,
-                   LinkedList<String> productDetailsLists) {
+                   LinkedList<String> productDetailsLists,
+                   String productType) {
         this.productName = productNameLists.removeFirst();
         this.minPrice = Double.valueOf(productDetailsLists.removeFirst());
         this.avgPrice = Double.valueOf(productDetailsLists.removeFirst());
@@ -28,6 +30,7 @@ public class Product {
         this.sizeType = productDetailsLists.removeFirst();
         this.unit = productDetailsLists.removeFirst();
         this.dateTime = productDetailsLists.removeFirst();
+        this.productType = productType;
     }
 
     public Product(String productName) {
@@ -90,6 +93,14 @@ public class Product {
         this.dateTime = dateTime;
     }
 
+    public String getProductType() {
+        return productType;
+    }
+
+    public void setProductType(String productType) {
+        this.productType = productType;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Product{");
@@ -100,6 +111,7 @@ public class Product {
         sb.append(", sizeType='").append(sizeType).append('\'');
         sb.append(", unit='").append(unit).append('\'');
         sb.append(", dateTime='").append(dateTime).append('\'');
+        sb.append(", productType='").append(productType).append('\'');
         sb.append('}');
         return sb.toString();
     }
