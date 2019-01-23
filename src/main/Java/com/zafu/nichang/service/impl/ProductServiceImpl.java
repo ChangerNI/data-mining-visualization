@@ -1,4 +1,4 @@
-package com.zafu.nichang.impl;
+package com.zafu.nichang.service.impl;
 
 import com.zafu.nichang.mapper.ProductMapper;
 import com.zafu.nichang.service.ProductService;
