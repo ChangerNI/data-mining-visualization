@@ -1,4 +1,4 @@
-package com.zafu.nichang.webspider.util;
+package com.zafu.nichang.util;
 
 import java.util.LinkedList;
 import java.util.List;

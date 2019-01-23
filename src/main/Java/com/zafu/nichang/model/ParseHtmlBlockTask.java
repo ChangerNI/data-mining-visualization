@@ -1,9 +1,9 @@
-package com.zafu.nichang.webspider.model;
+package com.zafu.nichang.model;
 
-import com.zafu.nichang.web.mapper.ProductMapper;
-import com.zafu.nichang.webspider.enums.ProductEnums;
-import com.zafu.nichang.webspider.util.OkHttpUtil;
-import com.zafu.nichang.webspider.util.RegUtil;
+import com.zafu.nichang.mapper.ProductMapper;
+import com.zafu.nichang.enums.ProductEnums;
+import com.zafu.nichang.util.OkHttpUtil;
+import com.zafu.nichang.util.RegUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -1,7 +1,7 @@
-package com.zafu.nichang.webspider.util;
+package com.zafu.nichang.util;
 
-import com.zafu.nichang.webspider.enums.ProductEnums;
-import com.zafu.nichang.webspider.model.ParseHtmlBlockTask;
+import com.zafu.nichang.enums.ProductEnums;
+import com.zafu.nichang.model.ParseHtmlBlockTask;
 import org.apache.commons.lang3.concurrent.BasicThreadFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

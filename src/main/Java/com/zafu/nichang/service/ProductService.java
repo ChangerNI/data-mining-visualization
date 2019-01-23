@@ -1,6 +1,6 @@
-package com.zafu.nichang.web.service;
+package com.zafu.nichang.service;
 
-import com.zafu.nichang.webspider.model.Product;
+import com.zafu.nichang.model.Product;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;

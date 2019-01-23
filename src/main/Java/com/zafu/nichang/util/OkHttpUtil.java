@@ -1,4 +1,4 @@
-package com.zafu.nichang.webspider.util;
+package com.zafu.nichang.util;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;

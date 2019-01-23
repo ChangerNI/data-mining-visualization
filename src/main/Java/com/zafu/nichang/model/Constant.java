@@ -1,4 +1,4 @@
-package com.zafu.nichang.webspider.model;
+package com.zafu.nichang.model;
 
 import java.util.regex.Pattern;
 

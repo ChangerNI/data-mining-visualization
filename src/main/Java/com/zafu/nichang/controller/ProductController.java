@@ -1,6 +1,6 @@
-package com.zafu.nichang.web.controller;
+package com.zafu.nichang.controller;
 
-import com.zafu.nichang.webspider.util.StartWebspiderUtil;
+import com.zafu.nichang.util.StartWebspiderUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

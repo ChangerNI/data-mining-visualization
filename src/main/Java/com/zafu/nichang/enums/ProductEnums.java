@@ -1,4 +1,4 @@
-package com.zafu.nichang.webspider.enums;
+package com.zafu.nichang.enums;
 
 /**
  * @author 倪畅

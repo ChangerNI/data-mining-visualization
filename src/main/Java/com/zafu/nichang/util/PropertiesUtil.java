@@ -1,6 +1,6 @@
-package com.zafu.nichang.webspider.util;
+package com.zafu.nichang.util;
 
-import com.zafu.nichang.webspider.model.PropertiesModel;
+import com.zafu.nichang.model.PropertiesModel;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

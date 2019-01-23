@@ -1,4 +1,4 @@
-package com.zafu.nichang.web.service;
+package com.zafu.nichang.service;
 
 import org.junit.Test;
 

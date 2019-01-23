@@ -1,8 +1,8 @@
-package com.zafu.nichang.web.impl;
+package com.zafu.nichang.impl;
 
-import com.zafu.nichang.web.mapper.ProductMapper;
-import com.zafu.nichang.web.service.ProductService;
-import com.zafu.nichang.webspider.model.Product;
+import com.zafu.nichang.mapper.ProductMapper;
+import com.zafu.nichang.service.ProductService;
+import com.zafu.nichang.model.Product;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
