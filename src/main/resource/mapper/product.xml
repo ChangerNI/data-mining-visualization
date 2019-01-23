@@ -7,9 +7,21 @@
  -->
 <mapper namespace="com.zafu.nichang.mapper.ProductMapper">
 
-    <insert id="insertProduct" parameterType="Product">
+    <insert id="insertProduct" parameterType="java.util.List" useGeneratedKeys="false">
         insert into product_everyday_detail(product_name,min_price,avg_price,max_price,size_type,unit,date_time,product_type)
-        values(#{productName},#{min_price},#{avgPrice},#{maxPrice},#{sizeType},#{unit},#{dateTime},#{threadNumber})
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+                #{productName},
+                #{min_price},
+                #{avgPrice},
+                #{maxPrice},
+                #{sizeType},
+                #{unit},
+                #{dateTime},
+                #{threadNumber}
+            )
+        </foreach>
     </insert>
 
 </mapper>
