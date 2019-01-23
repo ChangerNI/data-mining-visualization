@@ -14,7 +14,7 @@ import java.util.List;
  * 2019-01-23
  */
 @Service
-/* 此处不再进行创建SqlSession和提交事务，都已交由spring去管理了。*/
+/* 此处不再进行创建SqlSession和提交事务，都已交由spring去管理*/
 @Transactional
 
 public class ProductServiceImpl implements ProductService {
@@ -25,8 +25,8 @@ public class ProductServiceImpl implements ProductService {
      * 新增数据
      */
     @Override
-    public List<Product> insertProduct(List<Product> productList) {
-        return productMapper.insertProduct(productList);
+    public void insertProduct(List<Product> productList) {
+        productMapper.insertProduct(productList);
     }
 
 }

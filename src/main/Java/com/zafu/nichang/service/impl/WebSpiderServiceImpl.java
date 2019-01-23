@@ -27,7 +27,7 @@ public class WebSpiderServiceImpl implements WebSpiderService {
             new BasicThreadFactory.Builder().namingPattern("html-parser-%d").daemon(true).build());
 
     @Override
-    public void executeSpiderProdctFromWeb() {
+    public void executeSpiderProductFromWeb() {
         try {
             // 是否需要 Cookie对象？？
             String cookie = "";

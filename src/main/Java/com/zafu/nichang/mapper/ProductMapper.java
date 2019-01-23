@@ -10,5 +10,9 @@ import java.util.List;
  */
 public interface ProductMapper {
 
-    List<Product> insertProduct(List<Product> productList);
+    /**
+     * 插入数据接口
+     * @param productList
+     */
+    void insertProduct(List<Product> productList);
 }

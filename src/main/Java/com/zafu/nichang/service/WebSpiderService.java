@@ -10,7 +10,7 @@ public interface WebSpiderService {
      * 爬虫开关
      *
      */
-    void executeSpiderProdctFromWeb();
+    void executeSpiderProductFromWeb();
 
 
 }

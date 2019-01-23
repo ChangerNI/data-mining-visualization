@@ -18,5 +18,5 @@ public interface ProductService {
      * 插入数据到数据库
      * @param productList
      */
-    List<Product> insertProduct(List<Product> productList);
+    void insertProduct(List<Product> productList);
 }
