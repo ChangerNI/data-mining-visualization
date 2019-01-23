@@ -8,6 +8,10 @@ import java.util.regex.Pattern;
  */
 public class Constant {
     /**
+     * 最大线程数：5
+     */
+    public static final Integer THREAD_COUNT = 5;
+    /**
      * 相关正则表达式
      */
     //产品名称
