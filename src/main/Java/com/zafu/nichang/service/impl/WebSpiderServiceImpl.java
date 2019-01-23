@@ -1,12 +1,14 @@
 package com.zafu.nichang.service.impl;
 
 import com.zafu.nichang.enums.ProductEnums;
+import com.zafu.nichang.mapper.ProductMapper;
 import com.zafu.nichang.model.Constant;
 import com.zafu.nichang.model.ParseHtmlBlockTask;
 import com.zafu.nichang.service.WebSpiderService;
 import org.apache.commons.lang3.concurrent.BasicThreadFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.CountDownLatch;
@@ -17,6 +19,9 @@ import java.util.concurrent.Executors;
 @Service
 public class WebSpiderServiceImpl implements WebSpiderService {
 
+
+    @Autowired
+    private ProductMapper productMapper;
 
     /**
      * 日志
@@ -38,6 +43,7 @@ public class WebSpiderServiceImpl implements WebSpiderService {
             // 开启多线程 执行
             for (ProductEnums productEnums : ProductEnums.values()) {
                 ParseHtmlBlockTask parseHtmlBlockTask = new ParseHtmlBlockTask(productEnums, cookie, waiter);
+                parseHtmlBlockTask.setProductMapper(productMapper);
                 htmlParserExecutorService.submit(parseHtmlBlockTask);
             }
 

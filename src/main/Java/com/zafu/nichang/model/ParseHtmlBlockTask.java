@@ -35,6 +35,10 @@ public class ParseHtmlBlockTask implements Runnable {
     public ParseHtmlBlockTask() {
     }
 
+    public void setProductMapper(ProductMapper productMapper) {
+        this.productMapper = productMapper;
+    }
+
     public ParseHtmlBlockTask(ProductEnums productEnums, String cookie, CountDownLatch waiter) {
         this.productEnums = productEnums;
         this.cookie = cookie;
