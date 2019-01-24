@@ -1,14 +1,11 @@
 package com.zafu.nichang.model;
 
-import com.zafu.nichang.mapper.ProductMapper;
 import com.zafu.nichang.enums.ProductEnums;
 import com.zafu.nichang.service.ProductService;
 import com.zafu.nichang.util.OkHttpUtil;
 import com.zafu.nichang.util.RegUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -33,8 +30,6 @@ public class ParseHtmlBlockTask implements Runnable {
 
     private ProductService productService;
 
-//    private ProductMapper productMapper;
-
     private CountDownLatch waiter;
 
     public ParseHtmlBlockTask() {
@@ -43,10 +38,6 @@ public class ParseHtmlBlockTask implements Runnable {
     public void setProductService(ProductService productService) {
         this.productService = productService;
     }
-
-//    public void setProductMapper(ProductMapper productMapper) {
-//        this.productMapper = productMapper;
-//    }
 
     public ParseHtmlBlockTask(ProductEnums productEnums, String cookie, CountDownLatch waiter) {
         this.productEnums = productEnums;
@@ -64,7 +55,6 @@ public class ParseHtmlBlockTask implements Runnable {
             log.info("productUrl: {}， pageCount: {}, type: {}", productUrl, pageCount, productEnums.name());
             List<Product> productList = getProduct(pageCount);
             productService.insertProduct(productList);
-//            productMapper.insertProduct(productList);
             log.info("插入数据成功！");
 
         } catch (Exception e) {

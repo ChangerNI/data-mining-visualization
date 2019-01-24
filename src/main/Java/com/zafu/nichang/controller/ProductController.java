@@ -23,7 +23,6 @@ public class ProductController {
     private WebSpiderService webSpiderService;
 
 
-    @Autowired
     @PostMapping()
     public void insertProduct() {
         webSpiderService.executeSpiderProductFromWeb();
