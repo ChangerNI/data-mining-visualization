@@ -4,7 +4,8 @@ import com.zafu.nichang.ApplicationTests;
 import com.zafu.nichang.service.WebSpiderService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.test.annotation.Rollback;
+import org.springframework.transaction.annotation.Transactional;
 
 
 public class WebSpiderServiceImplTest extends ApplicationTests {
@@ -13,6 +14,8 @@ public class WebSpiderServiceImplTest extends ApplicationTests {
     private WebSpiderService webSpiderService;
 
     @Test
+    @Rollback()
+    @Transactional
     public void executeSpiderProductFromWeb() {
         webSpiderService.executeSpiderProductFromWeb();
     }
