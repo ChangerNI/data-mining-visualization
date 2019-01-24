@@ -1,6 +1,7 @@
 package com.zafu.nichang.enums;
 
 /**
+ * 枚举类
  * @author 倪畅
  * @date 2019/1/21 16:49
  */

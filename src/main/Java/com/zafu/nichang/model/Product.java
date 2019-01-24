@@ -3,6 +3,7 @@ package com.zafu.nichang.model;
 import java.util.LinkedList;
 
 /**
+ * 产品类
  * @author 倪畅
  * @version 1.0 2019-01-18
  */

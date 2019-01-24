@@ -3,6 +3,7 @@ package com.zafu.nichang.model;
 import java.util.regex.Pattern;
 
 /**
+ * 常量类
  * @author 倪畅
  * @version 1.0 2019-01-16
  */

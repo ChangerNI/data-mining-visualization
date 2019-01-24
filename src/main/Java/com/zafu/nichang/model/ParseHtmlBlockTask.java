@@ -15,6 +15,7 @@ import java.util.function.Function;
 import static java.util.stream.Collectors.toList;
 
 /**
+ * 线程池工作任务具体实现
  * @author 倪畅
  * @version 1.0 2019-01-21
  *
