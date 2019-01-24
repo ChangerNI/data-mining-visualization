@@ -89,7 +89,7 @@ public class ParseHtmlBlockTask implements Runnable {
 //            String url = "http://www.xinfadi.com.cn/marketanalysis/4/list/1.shtml";
             String url = productEnums.getUrl().replace("???", String.valueOf(i));
             String htmlPage = OkHttpUtil.getHtmlByOkHttp(url, cookie);
-            log.info("解析网页成功！");
+//            log.info("解析网页成功！");
             List<String> currentPageHtmlBlocks = RegUtil.getRegInfoBlocks(Constant.OTA_WEB_HTML_BLOCK_REG_PATTERN, htmlPage);
             List<Product> currentPageProductList = currentPageHtmlBlocks.stream().map(this::getProduct).collect(toList());
             productList.addAll(currentPageProductList);
