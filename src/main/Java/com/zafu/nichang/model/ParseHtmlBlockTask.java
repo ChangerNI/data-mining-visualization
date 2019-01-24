@@ -2,10 +2,13 @@ package com.zafu.nichang.model;
 
 import com.zafu.nichang.mapper.ProductMapper;
 import com.zafu.nichang.enums.ProductEnums;
+import com.zafu.nichang.service.ProductService;
 import com.zafu.nichang.util.OkHttpUtil;
 import com.zafu.nichang.util.RegUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -28,16 +31,22 @@ public class ParseHtmlBlockTask implements Runnable {
     /** 是否需要原始的cookie对象 */
     private String cookie;
 
-    private ProductMapper productMapper;
+    private ProductService productService;
+
+//    private ProductMapper productMapper;
 
     private CountDownLatch waiter;
 
     public ParseHtmlBlockTask() {
     }
 
-    public void setProductMapper(ProductMapper productMapper) {
-        this.productMapper = productMapper;
+    public void setProductService(ProductService productService) {
+        this.productService = productService;
     }
+
+//    public void setProductMapper(ProductMapper productMapper) {
+//        this.productMapper = productMapper;
+//    }
 
     public ParseHtmlBlockTask(ProductEnums productEnums, String cookie, CountDownLatch waiter) {
         this.productEnums = productEnums;
@@ -54,8 +63,8 @@ public class ParseHtmlBlockTask implements Runnable {
             log.info("解析网页最大页面数成功！");
             log.info("productUrl: {}， pageCount: {}, type: {}", productUrl, pageCount, productEnums.name());
             List<Product> productList = getProduct(pageCount);
-
-            productMapper.insertProduct(productList);
+            productService.insertProduct(productList);
+//            productMapper.insertProduct(productList);
             log.info("插入数据成功！");
 
         } catch (Exception e) {

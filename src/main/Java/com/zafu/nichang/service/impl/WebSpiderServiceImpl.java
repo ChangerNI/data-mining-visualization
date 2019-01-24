@@ -4,6 +4,7 @@ import com.zafu.nichang.enums.ProductEnums;
 import com.zafu.nichang.mapper.ProductMapper;
 import com.zafu.nichang.model.Constant;
 import com.zafu.nichang.model.ParseHtmlBlockTask;
+import com.zafu.nichang.service.ProductService;
 import com.zafu.nichang.service.WebSpiderService;
 import org.apache.commons.lang3.concurrent.BasicThreadFactory;
 import org.slf4j.Logger;
@@ -21,7 +22,7 @@ public class WebSpiderServiceImpl implements WebSpiderService {
 
 
     @Autowired
-    private ProductMapper productMapper;
+    private ProductService productService;
 
     /**
      * 日志
@@ -43,7 +44,7 @@ public class WebSpiderServiceImpl implements WebSpiderService {
             // 开启多线程 执行
             for (ProductEnums productEnums : ProductEnums.values()) {
                 ParseHtmlBlockTask parseHtmlBlockTask = new ParseHtmlBlockTask(productEnums, cookie, waiter);
-                parseHtmlBlockTask.setProductMapper(productMapper);
+                parseHtmlBlockTask.setProductService(productService);
                 htmlParserExecutorService.submit(parseHtmlBlockTask);
             }
 
