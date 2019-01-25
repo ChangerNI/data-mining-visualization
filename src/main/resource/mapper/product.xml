@@ -26,6 +26,30 @@
         </foreach>
     </insert>
 
+    <select id="selectProduct" resultMap="BaseResultMap">
+        select *
+        from product_everyday_detail
+        <where>
+            <if test="productName != null and startDT != null and endDT != null">
+                product_name = #{productName, jdbcType=VARCHAR} and
+                date_time <![CDATA[>=]]> #{startDT, jdbcType=VARCHAR} and date_time <![CDATA[<=]]> #{endDT, jdbcType=VARCHAR}
+            </if>
+            <if test="productName == null and startDT != null and endDT != null">
+                date_time <![CDATA[>=]]> #{startDT, jdbcType=VARCHAR} and date_time <![CDATA[<=]]> #{endDT, jdbcType=VARCHAR}
+            </if>
+            <if test="productName != null and startDT == null and endDT != null">
+                product_name = #{productName, jdbcType=VARCHAR} and
+                 date_time <![CDATA[<=]]> #{endDT, jdbcType=VARCHAR}
+            </if>
+            <if test="productName != null and startDT != null and endDT == null">
+                product_name = #{productName, jdbcType=VARCHAR} and
+                date_time <![CDATA[>=]]> #{startDT, jdbcType=VARCHAR}
+            </if>
+            <if test="productName != null and startDT == null and endDT == null">
+                product_name = #{productName, jdbcType=VARCHAR}
+            </if>
+        </where>
 
+    </select>
 
 </mapper>

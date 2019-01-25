@@ -29,4 +29,9 @@ public class ProductServiceImpl implements ProductService {
         productMapper.insertProduct(productList);
     }
 
+    @Override
+    public List<Product> selectProduct(String productName, String startTime, String endTime) {
+        return productMapper.selectProduct(productName, startTime, endTime);
+    }
+
 }

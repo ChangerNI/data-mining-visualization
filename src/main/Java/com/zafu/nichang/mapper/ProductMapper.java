@@ -18,5 +18,11 @@ public interface ProductMapper {
     void insertProduct(List<Product> productList);
 
 
-//    List<Product> selectProduct(@Param("userName")String name, @Param("userArea")String area);
+    /**
+     * 获取数据接口
+     * @param startTime
+     * @param endTime
+     * @return
+     */
+    List<Product> selectProduct(@Param("productName")String productName, @Param("startDT")String startTime, @Param("endDT")String endTime);
 }
