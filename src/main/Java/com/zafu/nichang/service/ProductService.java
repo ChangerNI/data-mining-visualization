@@ -25,5 +25,5 @@ public interface ProductService {
      * @param endTime
      * @return
      */
-    List<Product> selectProduct(String productName, String startTime, String endTime);
+    List<Product> selectProduct(String productType, String productName, String startTime, String endTime);
 }
