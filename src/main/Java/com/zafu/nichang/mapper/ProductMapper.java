@@ -24,5 +24,5 @@ public interface ProductMapper {
      * @param endTime
      * @return
      */
-    List<Product> selectProduct(@Param("productName")String productName, @Param("startDT")String startTime, @Param("endDT")String endTime);
+    List<Product> selectProduct(@Param("productType")String productType, @Param("productName")String productName, @Param("startDT")String startTime, @Param("endDT")String endTime);
 }

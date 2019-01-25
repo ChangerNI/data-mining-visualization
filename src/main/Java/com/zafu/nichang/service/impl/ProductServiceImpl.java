@@ -30,8 +30,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> selectProduct(String productName, String startTime, String endTime) {
-        return productMapper.selectProduct(productName, startTime, endTime);
+    public List<Product> selectProduct(String productType, String productName, String startTime, String endTime) {
+        return productMapper.selectProduct(productType, productName, startTime, endTime);
     }
 
 }
