@@ -5,6 +5,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 
 /**
  * 解析html类
@@ -35,7 +36,7 @@ public class OkHttpUtil {
                 .addHeader("postman-token", "0852c936-5062-a3da-7472-94340ce9eca4")
                 .build();
         Response response = client.newCall(request).execute();
-        if(response.code()==200){
+        if(response.code()== HttpStatus.OK.value()){
             return response.body().string();
         }else{
             return null;
