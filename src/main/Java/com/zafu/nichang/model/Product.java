@@ -21,6 +21,18 @@ public class Product {
     public Product() {
     }
 
+    public Product(String productName, Double minPrice, Double avgPrice, Double maxPrice, String sizeType,
+                   String unit, String dateTime, String productType) {
+        this.productName = productName;
+        this.minPrice = minPrice;
+        this.avgPrice = avgPrice;
+        this.maxPrice = maxPrice;
+        this.sizeType = sizeType;
+        this.unit = unit;
+        this.dateTime = dateTime;
+        this.productType = productType;
+    }
+
     public Product(LinkedList<String> productNameLists,
                    LinkedList<String> productDetailsLists,
                    String productType) {

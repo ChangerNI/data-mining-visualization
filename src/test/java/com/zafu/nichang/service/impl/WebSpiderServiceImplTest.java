@@ -14,8 +14,8 @@ public class WebSpiderServiceImplTest extends ApplicationTests {
     private WebSpiderService webSpiderService;
 
     @Test
-    @Rollback()
     @Transactional
+    @Rollback()
     public void executeSpiderProductFromWeb() {
         webSpiderService.executeSpiderProductFromWeb();
     }

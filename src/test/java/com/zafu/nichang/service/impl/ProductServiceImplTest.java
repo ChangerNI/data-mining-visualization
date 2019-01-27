@@ -5,6 +5,8 @@ import com.zafu.nichang.model.Product;
 import com.zafu.nichang.service.ProductService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -23,5 +25,13 @@ public class ProductServiceImplTest extends ApplicationTests {
     public void selectProduct() {
         List<Product> productList = productService.selectProduct("FRUIT", "", "", "2019-01-25");
         System.out.println(productList);
+    }
+
+    @Test
+    @Transactional
+    @Rollback
+    public void saveProduct() {
+        productService.saveProduct(new Product("testName1",1D,2D,3D,"1",
+                "1","2018-12-21","12"));
     }
 }

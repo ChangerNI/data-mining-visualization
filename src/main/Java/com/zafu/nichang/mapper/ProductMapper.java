@@ -17,6 +17,11 @@ public interface ProductMapper {
      */
     void insertProduct(List<Product> productList);
 
+    /**
+     * 插入一条记录接口
+     * @param product
+     */
+    void saveProduct(Product product);
 
     /**
      * 获取数据接口

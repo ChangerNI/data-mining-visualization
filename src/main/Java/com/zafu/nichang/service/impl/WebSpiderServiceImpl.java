@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
@@ -37,6 +38,7 @@ public class WebSpiderServiceImpl implements WebSpiderService {
             new BasicThreadFactory.Builder().namingPattern("html-parser-%d").daemon(true).build());
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void executeSpiderProductFromWeb() {
         try {
             // 是否需要 Cookie对象？？

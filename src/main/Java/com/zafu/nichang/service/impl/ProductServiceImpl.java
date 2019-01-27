@@ -30,6 +30,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void saveProduct(Product product) {
+        productMapper.saveProduct(product);
+    }
+
+    @Override
     public List<Product> selectProduct(String productType, String productName, String startTime, String endTime) {
         return productMapper.selectProduct(productType, productName, startTime, endTime);
     }

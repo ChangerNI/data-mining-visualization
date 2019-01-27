@@ -26,6 +26,23 @@
         </foreach>
     </insert>
 
+    <insert id="saveProduct">
+        insert into product_everyday_detail(product_name,min_price,avg_price,max_price,size_type,unit,date_time,product_type,insert_time,update_time)
+        values
+            (
+            #{productName},
+            #{minPrice},
+            #{avgPrice},
+            #{maxPrice},
+            #{sizeType},
+            #{unit},
+            #{dateTime},
+            #{productType},
+            NOW(),
+            NOW()
+            )
+    </insert>
+
     <select id="selectProduct" resultType="Product">
         select *
         from product_everyday_detail
