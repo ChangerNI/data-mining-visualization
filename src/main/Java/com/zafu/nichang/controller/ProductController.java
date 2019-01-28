@@ -2,10 +2,9 @@ package com.zafu.nichang.controller;
 
 import com.zafu.nichang.service.WebSpiderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.RestController;
 
 
 /**
@@ -15,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author 倪畅
  * 2019-01-23
  */
-@Controller
+@RestController
 @RequestMapping("/product")
 public class ProductController {
 
