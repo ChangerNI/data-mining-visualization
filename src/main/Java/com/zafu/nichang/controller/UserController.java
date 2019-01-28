@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.IOException;
-
 /**
  * @author ncg
  */
@@ -20,21 +18,17 @@ import java.io.IOException;
 @RequestMapping("/u")
 public class UserController {
 
-    /** 日志 */
+    /**
+     * 日志
+     */
     private static Logger log = LoggerFactory.getLogger(UserController.class);
     @Autowired
     public UserService userService;
 
     @PostMapping("/login")
     public ResultVO<UserInfo> login(@RequestParam("username") String username, @RequestParam("password") String password) {
-        try {
-            UserInfo userInfo = userService.login(username, password);
-
-            return ResultVO.success("登录成功", userInfo);
-        } catch (IOException e) {
-            log.info("【登录异常】:{}" + e);
-        }
-        return null;
+        UserInfo userInfo = userService.login(username, password);
+        return ResultVO.success("登录成功", userInfo);
     }
 
 }

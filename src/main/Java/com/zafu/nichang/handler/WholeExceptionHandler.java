@@ -2,7 +2,7 @@ package com.zafu.nichang.handler;
 
 import com.zafu.nichang.entity.vo.ResultVO;
 import com.zafu.nichang.enums.ResultEnums;
-import com.zafu.nichang.exception.UserException;
+import com.zafu.nichang.exception.DataMiningVisualizationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -41,8 +41,8 @@ public class WholeExceptionHandler {
      * @param e 已知异常
      * @return 已知错误（一般是业务异常）
      */
-    @ExceptionHandler(UserException.class)
-    public ResultVO handleQuickQueryToolException(UserException e) {
+    @ExceptionHandler(DataMiningVisualizationException.class)
+    public ResultVO handleDataMiningVisualizationException(DataMiningVisualizationException e) {
         log.error("【全局异常处理】已知异常", e);
         return ResultVO.error(e.getCode(), e.getMessage());
     }

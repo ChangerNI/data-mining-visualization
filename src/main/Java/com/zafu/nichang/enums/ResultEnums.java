@@ -9,7 +9,8 @@ public enum ResultEnums {
 
     /** 操作成功 */
     SUCCESS(0, "操作成功"),
-    INNER_ERROR(-1, "内部错误")
+    INNER_ERROR(-1, "内部错误"),
+    USER_NOT_FOUND(1, "用户名或密码不正确")
     ;
 
     /** 返回码*/

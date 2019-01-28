@@ -17,7 +17,7 @@ public interface UserService {
      * @return 用户信息
      * @throws IOException io异常 接口调用所产生
      */
-    UserInfo login(String username, String password) throws IOException;
+    UserInfo login(String username, String password);
 
     /**
      * 退出登录

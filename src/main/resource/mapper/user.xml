@@ -16,7 +16,7 @@
             </if>
 
             <if test="password != null and password != ''">
-                t.password = #{password, jdbcType=VARCHAR}
+                and t.password = #{password, jdbcType=VARCHAR}
             </if>
         </where>
     </select>
