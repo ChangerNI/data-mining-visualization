@@ -7,8 +7,8 @@ import org.springframework.http.HttpStatus;
 import java.io.Serializable;
 
 /**
- * @author 朱文赵
- * @date 2018/3/22 14:24
+ * @author 倪畅
+ * @date 2019/1/29 14:24
  * @description 统一返回对象
  */
 

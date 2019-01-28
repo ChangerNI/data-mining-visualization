@@ -1,8 +1,8 @@
 package com.zafu.nichang.enums;
 
 /**
- * @author 朱文赵
- * @date 2018/3/22 14:58
+ * @author 倪畅
+ * @date 2019/1/28 15:35
  * @description 返回信息msg枚举类
  */
 public enum ResultEnums {

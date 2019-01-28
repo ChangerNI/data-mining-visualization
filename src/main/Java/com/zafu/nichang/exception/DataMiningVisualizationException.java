@@ -7,7 +7,8 @@ import com.zafu.nichang.enums.ResultEnums;
  * 然后调用自身的{@link #DataMiningVisualizationException(ResultEnums, Throwable)}
  * 交由全局异常处理#{@link com.zafu.nichang.handler.WholeExceptionHandler} 统一返回给前端
  *
- * @author ncg
+ * @author 倪畅
+ * @date 2019-01-28
  */
 public class DataMiningVisualizationException extends RuntimeException {
 

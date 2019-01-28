@@ -22,7 +22,7 @@ public class ProductController {
     private WebSpiderService webSpiderService;
 
 
-    @PostMapping()
+    @PostMapping("/spider")
     public void insertProduct() {
         webSpiderService.executeSpiderProductFromWeb();
     }

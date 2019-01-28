@@ -5,6 +5,7 @@ import com.zafu.nichang.model.UserInfo;
 import java.io.IOException;
 
 /**
+ * 登录接口
  * @author 倪畅
  * 2019-01-28
  */

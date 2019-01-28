@@ -8,6 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.Assert.*;
 
+/**
+ * 登录测试类
+ * @author 倪畅
+ * @date 2019-01-28
+ */
 public class UserServiceImplTest extends ApplicationTests {
 
     @Autowired

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
  * @author  倪畅
- * @date 2018/1/28 17:20
+ * @date 2019/1/28 17:20
  * @description 全局异常处理 凡是遇到异常请直接抛出 交由此类处理
  */
 @RestControllerAdvice
