@@ -15,7 +15,7 @@ import java.util.List;
 public class AnalysisUtil {
 
     private Product product;
-    private DateUtil dateUtil;
+    private DateUtil dateUtil = new DateUtil();
     private ProductMapper productMapper;
 
     /**
@@ -33,8 +33,8 @@ public class AnalysisUtil {
      * @param productList
      * @return
      */
-    public List<Product> analysisProduct(List<Product> productList){
-        List<Product> resultAnalysisList = new LinkedList<>();
+    public List<String> analysisProduct(List<Product> productList){
+        List<String> resultAnalysisList = new LinkedList<>();
         List<String> futureDateList = dateUtil.getFutureDateList();
 
         List<Double> minPriceList = new LinkedList<>();
@@ -57,10 +57,10 @@ public class AnalysisUtil {
         }
 
         for(int k = 0; k< Constant.FUTURE_WEEK; k++){
-            resultAnalysisList.add(product.setDateTime(futureDateList.get(k)));
-            resultAnalysisList.add(product.setMinPrice(futureMinPriceList.get(k)));
-            resultAnalysisList.add(product.setAvgPrice(futureAvgPriceList.get(k)));
-            resultAnalysisList.add(product.setMaxPrice(futureMaxPriceList.get(k)));
+            resultAnalysisList.add(futureDateList.get(k));
+            resultAnalysisList.add(String.valueOf(futureMinPriceList.get(k)));
+            resultAnalysisList.add(String.valueOf(futureAvgPriceList.get(k)));
+            resultAnalysisList.add(String.valueOf(futureMaxPriceList.get(k)));
         }
         return resultAnalysisList;
     }
@@ -71,9 +71,6 @@ public class AnalysisUtil {
      * @return 预测值
      */
     private static Double getExpect(List<Double> list, int day, Double modulus ) {
-        if (list.size() < 10 || modulus <= 0 || modulus >= 1) {
-            return null;
-        }
         Double modulusLeft = 1 - modulus;
         Double lastIndex = list.get(0);
         Double lastSecIndex = list.get(0);

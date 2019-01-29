@@ -40,4 +40,9 @@ public class ProductServiceImpl implements ProductService {
         return productMapper.selectProduct(productType, productName, startTime, endTime);
     }
 
+    @Override
+    public List<Product> getAnalysisProduct(String productName, String sizeType) {
+        return productMapper.getAnalysisProduct(productName, sizeType);
+    }
+
 }

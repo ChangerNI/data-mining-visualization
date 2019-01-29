@@ -70,7 +70,7 @@
                 product_name = #{productName, jdbcType=VARCHAR}
             </if>
             <if test="sizeType != null and sizeType != ''">
-                and sizeType = #{sizeType, jdbcType=VARCHAR}
+                and size_type = #{sizeType, jdbcType=VARCHAR}
             </if>
             <if test="productName != null and productName != ''and sizeType != null and sizeType != ''">
                 and DATE_SUB(CURDATE(), INTERVAL 7 DAY) <![CDATA[<=]]> date(date_time) order by date_time

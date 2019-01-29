@@ -31,4 +31,12 @@ public interface ProductService {
      * @return
      */
     List<Product> selectProduct(String productType, String productName, String startTime, String endTime);
+
+    /**
+     * 获得分析商品源数据
+     * @param productName
+     * @param sizeType
+     * @return
+     */
+    List<Product> getAnalysisProduct(String productName, String sizeType);
 }
