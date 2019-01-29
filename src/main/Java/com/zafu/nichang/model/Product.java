@@ -46,16 +46,6 @@ public class Product {
         this.productType = productType;
     }
 
-    public Product(LinkedList<String> futureDateList,
-                   LinkedList<Double> futureMinPriceList,
-                   LinkedList<Double> futureAvgPriceList,
-                   LinkedList<Double> futureMaxPriceList) {
-        this.dateTime = futureDateList.removeFirst();
-        this.minPrice = futureMinPriceList.removeFirst();
-        this.avgPrice = futureAvgPriceList.removeFirst();
-        this.maxPrice = futureMaxPriceList.removeFirst();
-    }
-
     public Product(String productName) {
         this.productName = productName;
     }
