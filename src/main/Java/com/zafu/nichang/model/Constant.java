@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
  * @version 1.0 2019-01-16
  */
 public class Constant {
+    public static final Integer FUTURE_WEEK = 7;
     /**
      * 最大线程数：5
      */

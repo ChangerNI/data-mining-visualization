@@ -1,28 +1,33 @@
 package com.zafu.nichang.util;
 
+import com.zafu.nichang.model.Constant;
+
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
+import java.util.*;
 
 /**
  * @author 倪畅
  * @version 1.0 2019-01-16
  */
 public class DateUtil {
+
+
     /**
-     * 获取n天后的日期  明天或后天
-     * @param value
+     * 得到未来一周的日期列表
      * @return
-     * @throws Exception
      */
-    public static String getTomorrowDate(Integer value) throws Exception {
-        Date date=new Date();
-        Calendar calendar = new GregorianCalendar();
-        calendar.setTime(date);
-        calendar.add(Calendar.DATE,value);
-        date=calendar.getTime();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        return formatter.format(date);
+    public List<String> getFutureDateList() {
+        List<String> futureDateTime = new LinkedList<>();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = null;
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        for(int i = 0; i< Constant.FUTURE_WEEK; i++){
+            calendar.add(Calendar.DATE, 1);
+            date = calendar.getTime();
+            futureDateTime.add(simpleDateFormat.format(date));
+        }
+        return futureDateTime;
     }
 }

@@ -19,6 +19,6 @@ public class UserServiceImplTest extends ApplicationTests {
     private UserService userService;
     @Test
     public void login() {
-        UserInfo userInfo = userService.login("123", "1");
+        UserInfo userInfo = userService.login("123", "123");
     }
 }
