@@ -39,4 +39,16 @@ public interface ProductService {
      * @return
      */
     List<Product> getAnalysisProduct(String productName, String sizeType);
+
+    /**
+     * 获取农产品的物流信息
+     * @return
+     */
+    List<Product> selectTransportMessage();
+
+    /**
+     * 获取农产品的总销量
+     * @return
+     */
+    List<Product> selectTotalData();
 }

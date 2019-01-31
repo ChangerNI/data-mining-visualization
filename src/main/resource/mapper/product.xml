@@ -62,6 +62,16 @@
         </where>
     </select>
 
+    <select id="selectTransportMessage">
+        select type, province, percent
+        from product_province_percent
+    </select>
+
+    <select id="selectTotalData">
+        select product_type, total_kg
+        from product_total_kg
+    </select>
+
     <select id="getAnalysisProduct" resultType="Product">
         select *
         from product_everyday_detail

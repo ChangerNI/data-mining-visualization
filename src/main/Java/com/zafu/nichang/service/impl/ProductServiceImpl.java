@@ -29,12 +29,24 @@ public class ProductServiceImpl implements ProductService {
         productMapper.insertProduct(productList);
     }
 
+    /**
+     * 新增一条数据
+     * @param product
+     */
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void saveProduct(Product product) {
         productMapper.saveProduct(product);
     }
 
+    /**
+     * 查询产品
+     * @param productType
+     * @param productName
+     * @param startTime
+     * @param endTime
+     * @return
+     */
     @Override
     public List<Product> selectProduct(String productType, String productName, String startTime, String endTime) {
         return productMapper.selectProduct(productType, productName, startTime, endTime);
@@ -43,6 +55,24 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> getAnalysisProduct(String productName, String sizeType) {
         return productMapper.getAnalysisProduct(productName, sizeType);
+    }
+
+    /**
+     * 查询产品流通信息
+     * @return
+     */
+    @Override
+    public List<Product> selectTransportMessage() {
+        return productMapper.selectTransportMessage();
+    }
+
+    /**
+     * 查询产品总销量
+     * @return
+     */
+    @Override
+    public List<Product> selectTotalData() {
+        return productMapper.selectTotalData();
     }
 
 }
