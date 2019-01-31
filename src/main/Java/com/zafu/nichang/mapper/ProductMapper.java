@@ -42,13 +42,13 @@ public interface ProductMapper {
 
 
     /**
-     * 获取农产品的物流信息
+     * 获取产品的物流信息
      * @return
      */
     List<Product> selectTransportMessage();
 
     /**
-     * 获取农产品的总销量
+     * 获取产品的总销量
      * @return
      */
     List<Product> selectTotalData();
