@@ -2,6 +2,7 @@ package com.zafu.nichang.service.impl;
 
 import com.zafu.nichang.ApplicationTests;
 import com.zafu.nichang.model.Product;
+import com.zafu.nichang.model.TransportProduct;
 import com.zafu.nichang.service.ProductService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,5 +35,17 @@ public class ProductServiceImplTest extends ApplicationTests {
     public void saveProduct() {
         productService.saveProduct(new Product("testName1",1D,2D,3D,"1",
                 "1","2018-12-21","12"));
+    }
+
+    @Test
+    public void selectTransportMessage(){
+        List<TransportProduct> transportProductList = productService.selectTransportMessage();
+        System.out.println(transportProductList);
+    }
+
+    @Test
+    public void selectTotalData(){
+        List<TransportProduct> transportProductList = productService.selectTotalData();
+        System.out.println(transportProductList);
     }
 }

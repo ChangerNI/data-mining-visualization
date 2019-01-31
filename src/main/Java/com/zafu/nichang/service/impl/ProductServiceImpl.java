@@ -2,6 +2,7 @@ package com.zafu.nichang.service.impl;
 
 import com.zafu.nichang.mapper.ProductMapper;
 import com.zafu.nichang.model.Product;
+import com.zafu.nichang.model.TransportProduct;
 import com.zafu.nichang.service.ProductService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -52,6 +53,12 @@ public class ProductServiceImpl implements ProductService {
         return productMapper.selectProduct(productType, productName, startTime, endTime);
     }
 
+    /**
+     * 获得分析商品源数据
+     * @param productName
+     * @param sizeType
+     * @return
+     */
     @Override
     public List<Product> getAnalysisProduct(String productName, String sizeType) {
         return productMapper.getAnalysisProduct(productName, sizeType);
@@ -62,7 +69,7 @@ public class ProductServiceImpl implements ProductService {
      * @return
      */
     @Override
-    public List<Product> selectTransportMessage() {
+    public List<TransportProduct> selectTransportMessage() {
         return productMapper.selectTransportMessage();
     }
 
@@ -71,7 +78,7 @@ public class ProductServiceImpl implements ProductService {
      * @return
      */
     @Override
-    public List<Product> selectTotalData() {
+    public List<TransportProduct> selectTotalData() {
         return productMapper.selectTotalData();
     }
 

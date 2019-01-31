@@ -1,6 +1,7 @@
 package com.zafu.nichang.service;
 
 import com.zafu.nichang.model.Product;
+import com.zafu.nichang.model.TransportProduct;
 
 import java.util.List;
 
@@ -44,11 +45,11 @@ public interface ProductService {
      * 获取农产品的物流信息
      * @return
      */
-    List<Product> selectTransportMessage();
+    List<TransportProduct> selectTransportMessage();
 
     /**
      * 获取农产品的总销量
      * @return
      */
-    List<Product> selectTotalData();
+    List<TransportProduct> selectTotalData();
 }

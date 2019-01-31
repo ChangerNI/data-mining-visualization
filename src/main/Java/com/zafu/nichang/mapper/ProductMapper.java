@@ -1,6 +1,7 @@
 package com.zafu.nichang.mapper;
 
 import com.zafu.nichang.model.Product;
+import com.zafu.nichang.model.TransportProduct;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -45,11 +46,11 @@ public interface ProductMapper {
      * 获取产品的物流信息
      * @return
      */
-    List<Product> selectTransportMessage();
+    List<TransportProduct> selectTransportMessage();
 
     /**
      * 获取产品的总销量
      * @return
      */
-    List<Product> selectTotalData();
+    List<TransportProduct> selectTotalData();
 }
