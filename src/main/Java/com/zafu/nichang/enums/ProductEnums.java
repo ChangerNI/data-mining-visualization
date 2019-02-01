@@ -7,7 +7,7 @@ package com.zafu.nichang.enums;
  */
 public enum  ProductEnums {
 
-    /** 蔬菜 */
+    /** 蔬菜 水果 肉 水产 油*/
     VEGETABLE("http://www.xinfadi.com.cn/marketanalysis/1/list/???.shtml"),
     FRUIT("http://www.xinfadi.com.cn/marketanalysis/2/list/???.shtml"),
     MEAT("http://www.xinfadi.com.cn/marketanalysis/3/list/???.shtml"),
