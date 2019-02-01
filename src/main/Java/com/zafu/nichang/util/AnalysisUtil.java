@@ -51,9 +51,10 @@ public class AnalysisUtil {
             maxPriceList.add(productList.get(i).getMaxPrice());
         }
         for(int j = 0; j< Constant.FUTURE_WEEK; j++){
-            futureMinPriceList.add(getExpect(minPriceList, j, 0.7));
-            futureAvgPriceList.add(getExpect(avgPriceList, j, 0.7));
-            futureMaxPriceList.add(getExpect(maxPriceList, j, 0.7));
+            Double random = Math.random();
+            futureMinPriceList.add(getExpect(minPriceList, j, random));
+            futureAvgPriceList.add(getExpect(avgPriceList, j, random));
+            futureMaxPriceList.add(getExpect(maxPriceList, j, random));
         }
 
         for(int k = 0; k< Constant.FUTURE_WEEK; k++){
