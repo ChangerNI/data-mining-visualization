@@ -51,10 +51,15 @@ public class ParseHtmlBlockTask implements Runnable {
         try {
             String productUrl = productEnums.getUrl();
             String productHtml = OkHttpUtil.getHtmlByOkHttp(productUrl.replace("???", String.valueOf(1)), cookie);
+            Integer tableSize = productService.getSizeFromTable();
+            int flag = 0;
             int pageCount = getMaxPage(productHtml);
             log.info("解析网页最大页面数成功！");
             log.info("productUrl: {}， pageCount: {}, type: {}", productUrl, pageCount, productEnums.name());
-            getProductMessage(pageCount);
+            if(tableSize != 0){
+                flag = 1;
+            }
+            getProductMessage(pageCount, flag);
 //            productService.insertProduct(productList);
 //            log.info("插入数据成功！");
 
@@ -83,8 +88,11 @@ public class ParseHtmlBlockTask implements Runnable {
      * @return
      * @throws Exception
      */
-    private void getProductMessage(int pageCount) throws Exception {
+    private void getProductMessage(int pageCount, int flag) throws Exception {
         List<Product> productList = new LinkedList<>();
+        //数据表中最大的日期
+        List<Product> maxDateFromTableList = productService.getMaxDateFromTable();
+
         // 替换为pageCount
         for (int i = 1; i < pageCount; i++) {
 //            String url = "http://www.xinfadi.com.cn/marketanalysis/4/list/1.shtml";
@@ -93,12 +101,34 @@ public class ParseHtmlBlockTask implements Runnable {
             log.info("解析{}类别的第{}页基本信息成功！", productEnums, i);
             List<String> currentPageHtmlBlocks = RegUtil.getRegInfoBlocks(Constant.OTA_WEB_HTML_BLOCK_REG_PATTERN, htmlPage);
             List<Product> currentPageProductList = currentPageHtmlBlocks.stream().map(this::getProduct).collect(toList());
-            productService.insertProduct(currentPageProductList);
-            log.info("插入{}类别的第{}页基本信息成功！", productEnums, i);
+            //flag=1,执行更新数据插入方法（按条插入）
+            if(flag == 1){
+                for (int j = 0; j < currentPageProductList.size(); j++) {
+                    String currentDateTime = null;
+                    for (Product product : maxDateFromTableList) {
+                        if (productEnums.name().toUpperCase().equals(product.getProductType())) {
+                            currentDateTime = product.getDateTime();
+                        }
+                    }
+                    if (currentPageProductList.get(j).getDateTime().compareTo(currentDateTime) == 1) {
+                        productService.saveProduct(currentPageProductList.get(j));
+                        log.info("插入{}类别的第{}页第{}条基本信息成功！", productEnums, i, j);
+                    }else{
+                        log.info("数据已经更新完毕或者没有数据更新！");
+                        return;
+                    }
+                }
+            }else{
+                //flag!=1,初始化数据库，批量插入
+                productService.insertProduct(currentPageProductList);
+                log.info("插入{}类别的第{}页基本信息成功！", productEnums, i);
+            }
+
         }
     }
 
 //    /**
+//     * 【弃用】
 //     * 获得页面产品
 //     * 采用java8中{@link Function} 来重构模板方法 不同的地方已经抽象出来
 //     *

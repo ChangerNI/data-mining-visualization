@@ -41,7 +41,7 @@ public class WebSpiderServiceImpl implements WebSpiderService {
     @Transactional(rollbackFor = Exception.class)
     public void executeSpiderProductFromWeb() {
         try {
-            // 是否需要 Cookie对象？？
+            // 是否需要Cookie对象
             String cookie = "";
 
             // 等待子线程结束
@@ -60,6 +60,5 @@ public class WebSpiderServiceImpl implements WebSpiderService {
             logger.info("error：", e);
         }
     }
-
 
 }

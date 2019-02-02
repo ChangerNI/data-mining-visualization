@@ -87,4 +87,15 @@
             </if>
         </where>
     </select>
+
+    <select id="getMaxDateFromTable" resultType="Product">
+        select product_type, substr(MAX(date_time),1,10) as date_time
+        from product_everyday_detail
+		group by product_type
+    </select>
+
+    <select id="getSizeFromTable" resultType="int">
+        select count(id) as count_number
+        from product_everyday_detail
+    </select>
 </mapper>

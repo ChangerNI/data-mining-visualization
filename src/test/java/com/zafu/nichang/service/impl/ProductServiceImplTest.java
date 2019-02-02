@@ -48,4 +48,16 @@ public class ProductServiceImplTest extends ApplicationTests {
         List<TransportProduct> transportProductList = productService.selectTotalData();
         System.out.println(transportProductList);
     }
+
+    @Test
+    public void getMaxDate(){
+        List<Product> stringList = productService.getMaxDateFromTable();
+        System.out.println(stringList);
+    }
+
+    @Test
+    public void getSizeFromTable(){
+        Integer number = productService.getSizeFromTable();
+        System.out.println(number);
+    }
 }

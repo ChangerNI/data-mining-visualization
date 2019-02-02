@@ -53,4 +53,15 @@ public interface ProductMapper {
      * @return
      */
     List<TransportProduct> selectTotalData();
+
+    /**
+     * 获得表中每类最大日期
+     * @return
+     */
+    List<Product> getMaxDateFromTable();
+
+    /**
+     * 获得表中记录条数
+     */
+    Integer getSizeFromTable();
 }

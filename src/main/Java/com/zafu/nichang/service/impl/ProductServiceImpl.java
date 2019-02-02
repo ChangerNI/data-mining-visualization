@@ -82,4 +82,20 @@ public class ProductServiceImpl implements ProductService {
         return productMapper.selectTotalData();
     }
 
+    /**
+     * 获得表中每个类别的最大日期
+     * @return
+     */
+    @Override
+    public List<Product> getMaxDateFromTable() {
+        return productMapper.getMaxDateFromTable();
+    }
+
+    /**
+     * 获得表中记录条数
+     */
+    @Override
+    public Integer getSizeFromTable() {
+        return productMapper.getSizeFromTable();
+    }
 }

@@ -13,5 +13,4 @@ public interface WebSpiderService {
      */
     void executeSpiderProductFromWeb();
 
-
 }
