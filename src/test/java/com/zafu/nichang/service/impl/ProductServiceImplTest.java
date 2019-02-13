@@ -28,7 +28,7 @@ public class ProductServiceImplTest extends ApplicationTests {
 
     @Test
     public void selectProduct() {
-        PageDTO<List<Product>> pageInfo = productService.selectProduct(new ListQueryCriteria("AQUATIC",
+        PageDTO<List<Product>> pageInfo = productService.selectProduct(new ListQueryCriteria("",
                                                                                                 "国产平鱼",
                                                                                                 "2019-01-11",
                                                                                                 "2019-02-12",

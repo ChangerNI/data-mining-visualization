@@ -28,9 +28,7 @@ public interface ProductService {
 
     /**
      * 获得产品信息
-     * @param productName
-     * @param startTime
-     * @param endTime
+     * @param listQueryCriteria
      * @return
      */
     PageDTO<List<Product>> selectProduct(ListQueryCriteria listQueryCriteria);
