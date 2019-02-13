@@ -59,7 +59,7 @@ public class ParseHtmlBlockTask implements Runnable {
             if(tableSize != 0){
                 flag = 1;
             }
-            getProductMessage(pageCount, flag);
+            saveProductMessage(pageCount, flag);
 //            productService.insertProduct(productList);
 //            log.info("插入数据成功！");
 
@@ -88,8 +88,7 @@ public class ParseHtmlBlockTask implements Runnable {
      * @return
      * @throws Exception
      */
-    private void getProductMessage(int pageCount, int flag) throws Exception {
-        List<Product> productList = new LinkedList<>();
+    private void saveProductMessage(int pageCount, int flag) throws Exception {
         //数据表中最大的日期
         List<Product> maxDateFromTableList = productService.getMaxDateFromTable();
 
@@ -128,7 +127,7 @@ public class ParseHtmlBlockTask implements Runnable {
     }
 
 //    /**
-//     * 【弃用】
+//     * @deprecated
 //     * 获得页面产品
 //     * 采用java8中{@link Function} 来重构模板方法 不同的地方已经抽象出来
 //     *
@@ -158,7 +157,9 @@ public class ParseHtmlBlockTask implements Runnable {
      * @return
      */
     private Product getProduct(String htmlBlock) {
+        // 修改了原始值！
         LinkedList<String> productNameLists = RegUtil.getRegInfoDetails(Constant.OTA_WEB_PRODUCT_REG_PATTERN, htmlBlock);
+        // 修改了原始值！
         LinkedList<String> productDetailsLists = RegUtil.getRegInfoDetails(Constant.OTA_WEB_DETAIL_REG_PATTERN, htmlBlock);
         return new Product(productNameLists, productDetailsLists, productEnums.name().toUpperCase());
     }
