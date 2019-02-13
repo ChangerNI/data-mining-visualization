@@ -1,5 +1,7 @@
 package com.zafu.nichang.service;
 
+import com.zafu.nichang.entity.dto.PageDTO;
+import com.zafu.nichang.entity.query.ListQueryCriteria;
 import com.zafu.nichang.model.Product;
 import com.zafu.nichang.model.TransportProduct;
 
@@ -31,7 +33,7 @@ public interface ProductService {
      * @param endTime
      * @return
      */
-    List<Product> selectProduct(String productType, String productName, String startTime, String endTime);
+    PageDTO<List<Product>> selectProduct(ListQueryCriteria listQueryCriteria);
 
     /**
      * 获得分析商品源数据

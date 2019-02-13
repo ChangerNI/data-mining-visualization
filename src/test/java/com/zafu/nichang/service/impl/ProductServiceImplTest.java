@@ -1,6 +1,9 @@
 package com.zafu.nichang.service.impl;
 
+import com.github.pagehelper.PageInfo;
 import com.zafu.nichang.ApplicationTests;
+import com.zafu.nichang.entity.dto.PageDTO;
+import com.zafu.nichang.entity.query.ListQueryCriteria;
 import com.zafu.nichang.model.Product;
 import com.zafu.nichang.model.TransportProduct;
 import com.zafu.nichang.service.ProductService;
@@ -25,8 +28,12 @@ public class ProductServiceImplTest extends ApplicationTests {
 
     @Test
     public void selectProduct() {
-        List<Product> productList = productService.selectProduct("FRUIT", "", "", "2019-01-25");
-        System.out.println(productList);
+        PageDTO<List<Product>> pageInfo = productService.selectProduct(new ListQueryCriteria("AQUATIC",
+                                                                                                "国产平鱼",
+                                                                                                "2019-01-11",
+                                                                                                "2019-02-12",
+                                                                                                "带头"));
+        System.out.println(pageInfo.getList());
     }
 
     @Test

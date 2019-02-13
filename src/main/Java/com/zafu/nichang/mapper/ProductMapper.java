@@ -1,5 +1,6 @@
 package com.zafu.nichang.mapper;
 
+import com.zafu.nichang.entity.query.ListQueryCriteria;
 import com.zafu.nichang.model.Product;
 import com.zafu.nichang.model.TransportProduct;
 import org.apache.ibatis.annotations.Param;
@@ -26,12 +27,10 @@ public interface ProductMapper {
 
     /**
      * 获取数据接口
-     * @param startTime
-     * @param endTime
+     * @param listQueryCriteria
      * @return
      */
-    List<Product> selectProduct(@Param("productType")String productType, @Param("productName")String productName,
-                                @Param("startDT")String startTime, @Param("endDT")String endTime);
+    List<Product> selectProduct(ListQueryCriteria listQueryCriteria);
 
     /**
      * 获得分析商品源数据
@@ -40,6 +39,7 @@ public interface ProductMapper {
      * @return
      */
     List<Product> getAnalysisProduct(@Param("productName")String productName, @Param("sizeType")String sizeType);
+
 
 
     /**

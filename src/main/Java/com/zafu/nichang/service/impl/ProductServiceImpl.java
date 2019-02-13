@@ -1,5 +1,9 @@
 package com.zafu.nichang.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.zafu.nichang.entity.dto.PageDTO;
+import com.zafu.nichang.entity.query.ListQueryCriteria;
 import com.zafu.nichang.mapper.ProductMapper;
 import com.zafu.nichang.model.Product;
 import com.zafu.nichang.model.TransportProduct;
@@ -42,15 +46,16 @@ public class ProductServiceImpl implements ProductService {
 
     /**
      * 查询产品
-     * @param productType
-     * @param productName
-     * @param startTime
-     * @param endTime
      * @return
      */
     @Override
-    public List<Product> selectProduct(String productType, String productName, String startTime, String endTime) {
-        return productMapper.selectProduct(productType, productName, startTime, endTime);
+    public PageDTO<List<Product>> selectProduct(ListQueryCriteria listQueryCriteria) {
+
+        PageInfo<List<Product>> pageInfo = PageHelper.startPage(listQueryCriteria.getPageNum(), listQueryCriteria.getPageSize())
+                .doSelectPageInfo(() -> productMapper.selectProduct(listQueryCriteria));
+
+
+        return new PageDTO<>(pageInfo.getList(), pageInfo.getTotal(), listQueryCriteria.getPageNum());
     }
 
     /**
