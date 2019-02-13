@@ -7,6 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * 解析html类
  *
@@ -26,7 +28,10 @@ public class OkHttpUtil {
      * @throws Exception
      */
     public static String getHtmlByOkHttp(String url, String cookie) throws Exception {
-        OkHttpClient client = new OkHttpClient();
+        OkHttpClient client = new OkHttpClient.Builder()
+                .connectTimeout(10, TimeUnit.SECONDS)
+                .readTimeout(20, TimeUnit.SECONDS)
+                .build();
         Request request = new Request.Builder()
                 .url(url)
                 .get()

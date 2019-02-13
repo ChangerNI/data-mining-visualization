@@ -46,10 +46,10 @@ public class AnalysisUtil {
         List<Double> futureAvgPriceList = new LinkedList<>();
         List<Double> futureMaxPriceList = new LinkedList<>();
 
-        for(int i = 0; i < productList.size(); i++){
-            minPriceList.add(productList.get(i).getMinPrice());
-            avgPriceList.add(productList.get(i).getAvgPrice());
-            maxPriceList.add(productList.get(i).getMaxPrice());
+        for (Product product1 : productList) {
+            minPriceList.add(product1.getMinPrice());
+            avgPriceList.add(product1.getAvgPrice());
+            maxPriceList.add(product1.getMaxPrice());
         }
         for(int j = 0; j< Constant.FUTURE_WEEK; j++){
             Double random = Math.random();

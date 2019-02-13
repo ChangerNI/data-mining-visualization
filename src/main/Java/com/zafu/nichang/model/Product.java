@@ -7,7 +7,7 @@ import java.util.LinkedList;
  * @author 倪畅
  * @version 1.0 2019-01-18
  */
-public class Product {
+public class  Product {
 
     private String productName;
     private Double minPrice;

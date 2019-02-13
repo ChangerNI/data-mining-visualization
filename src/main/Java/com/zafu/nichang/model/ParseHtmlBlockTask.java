@@ -11,6 +11,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.function.Function;
+import java.util.function.Predicate;
 
 import static java.util.stream.Collectors.toList;
 
@@ -52,16 +53,14 @@ public class ParseHtmlBlockTask implements Runnable {
             String productUrl = productEnums.getUrl();
             String productHtml = OkHttpUtil.getHtmlByOkHttp(productUrl.replace("???", String.valueOf(1)), cookie);
             Integer tableSize = productService.getSizeFromTable();
-            int flag = 0;
+            boolean flag = true;
             int pageCount = getMaxPage(productHtml);
             log.info("解析网页最大页面数成功！");
             log.info("productUrl: {}， pageCount: {}, type: {}", productUrl, pageCount, productEnums.name());
             if(tableSize != 0){
-                flag = 1;
+                flag = false;
             }
             saveProductMessage(pageCount, flag);
-//            productService.insertProduct(productList);
-//            log.info("插入数据成功！");
 
         } catch (Exception e) {
             log.error("【数据解析】发生异常：", e);
@@ -88,7 +87,7 @@ public class ParseHtmlBlockTask implements Runnable {
      * @return
      * @throws Exception
      */
-    private void saveProductMessage(int pageCount, int flag) throws Exception {
+    private void saveProductMessage(int pageCount, boolean flag) throws Exception {
         //数据表中最大的日期
         List<Product> maxDateFromTableList = productService.getMaxDateFromTable();
 
@@ -100,25 +99,18 @@ public class ParseHtmlBlockTask implements Runnable {
             log.info("解析{}类别的第{}页基本信息成功！", productEnums, i);
             List<String> currentPageHtmlBlocks = RegUtil.getRegInfoBlocks(Constant.OTA_WEB_HTML_BLOCK_REG_PATTERN, htmlPage);
             List<Product> currentPageProductList = currentPageHtmlBlocks.stream().map(this::getProduct).collect(toList());
-            //flag=1,执行更新数据插入方法（按条插入）
-            if(flag == 1){
-                for (int j = 0; j < currentPageProductList.size(); j++) {
-                    String currentDateTime = null;
-                    for (Product product : maxDateFromTableList) {
-                        if (productEnums.name().toUpperCase().equals(product.getProductType())) {
-                            currentDateTime = product.getDateTime();
-                        }
-                    }
-                    if (currentPageProductList.get(j).getDateTime().compareTo(currentDateTime) == 1) {
-                        productService.saveProduct(currentPageProductList.get(j));
-                        log.info("插入{}类别的第{}页第{}条基本信息成功！", productEnums, i, j);
-                    }else{
-                        log.info("数据已经更新完毕或者没有数据更新！");
-                        return;
-                    }
+            if(!flag){
+                List<Product> filterList = currentPageProductList.stream()
+                        .filter(product -> isSameTypeAndLtDate(maxDateFromTableList, product)).collect(toList());
+                if(!filterList.isEmpty()){
+                    productService.insertProduct(filterList);
+                    log.info("插入{}类别的第{}页过滤后的基本信息成功！", productEnums, i);
+                }else{
+                    log.info("数据已经最新状态！");
+                    return;
                 }
+
             }else{
-                //flag!=1,初始化数据库，批量插入
                 productService.insertProduct(currentPageProductList);
                 log.info("插入{}类别的第{}页基本信息成功！", productEnums, i);
             }
@@ -126,29 +118,21 @@ public class ParseHtmlBlockTask implements Runnable {
         }
     }
 
-//    /**
-//     * @deprecated
-//     * 获得页面产品
-//     * 采用java8中{@link Function} 来重构模板方法 不同的地方已经抽象出来
-//     *
-//     * @param pageCount 不同的页面产品列表
-//     * @return
-//     * @throws Exception
-//     */
-//    private List<Product> getProduct(int pageCount) throws Exception {
-//        List<Product> productList = new LinkedList<>();
-//        // 替换为pageCount
-//        for (int i = 1; i < pageCount; i++) {
-////            String url = "http://www.xinfadi.com.cn/marketanalysis/4/list/1.shtml";
-//            String url = productEnums.getUrl().replace("???", String.valueOf(i));
-//            String htmlPage = OkHttpUtil.getHtmlByOkHttp(url, cookie);
-//            log.info("解析{}类别的第{}条基本信息成功！", productEnums, i);
-//            List<String> currentPageHtmlBlocks = RegUtil.getRegInfoBlocks(Constant.OTA_WEB_HTML_BLOCK_REG_PATTERN, htmlPage);
-//            List<Product> currentPageProductList = currentPageHtmlBlocks.stream().map(this::getProduct).collect(toList());
-//            productList.addAll(currentPageProductList);
+    private boolean isSameTypeAndLtDate(List<Product> maxDateFromTableList, Product curProduct) {
+//        for (Product maxPropertiesProduct : maxDateFromTableList) {
+//            if (curProduct.getProductType().equals(maxPropertiesProduct.getProductType())
+//                    && curProduct.getDateTime().compareTo(maxPropertiesProduct.getDateTime()) > 0) {
+//                return true;
+//            }
 //        }
-//        return productList;
-//    }
+//        return false;
+        //优化
+        Predicate<Product> isSameTypeAndLtDate = maxPropertiesProduct -> curProduct.getProductType().equals(maxPropertiesProduct.getProductType())
+                && curProduct.getDateTime().compareTo(maxPropertiesProduct.getDateTime()) > 0;
+
+        return maxDateFromTableList.stream().anyMatch(isSameTypeAndLtDate);
+
+    }
 
 
     /**
