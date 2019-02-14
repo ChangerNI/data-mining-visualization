@@ -21,4 +21,9 @@ public class UserServiceImplTest extends ApplicationTests {
     public void login() {
         UserInfo userInfo = userService.login("123", "123");
     }
+
+    @Test
+    public void save(){
+        userService.saveLoginUser("abc", "abc");
+    }
 }

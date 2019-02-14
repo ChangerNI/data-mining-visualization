@@ -15,4 +15,12 @@ public interface UserMapper {
      * @return
      */
     UserInfo getLoginUser(@Param("username")String username, @Param("password")String password);
+
+    /**
+     * 保存新注册的用户
+     * @param username
+     * @param password
+     * @return
+     */
+    void saveLoginUser(@Param("username")String username, @Param("password")String password);
 }

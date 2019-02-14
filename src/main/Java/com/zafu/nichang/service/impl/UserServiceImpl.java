@@ -35,6 +35,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void saveLoginUser(String username, String password) {
+        userMapper.saveLoginUser(username, password);
+    }
+
+    @Override
     public void logout() {
 
     }

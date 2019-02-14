@@ -21,4 +21,14 @@
         </where>
     </select>
 
+    <insert id="saveLoginUser">
+        insert into user_info(username,password,insert_time,update_time)
+        values
+        (
+            #{username},
+            #{password},
+            NOW(),
+            NOW()
+        )
+    </insert>
 </mapper>

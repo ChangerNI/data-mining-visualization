@@ -26,10 +26,27 @@ public class UserController {
     @Autowired
     public UserService userService;
 
+    /**
+     * 登录
+     * @param username
+     * @param password
+     * @return
+     */
     @PostMapping("/login")
     public ResultVO<UserInfo> login(@RequestParam("username") String username, @RequestParam("password") String password) {
         UserInfo userInfo = userService.login(username, password);
         return ResultVO.success("登录成功", userInfo);
     }
 
+    /**
+     * 注册
+     * @param username
+     * @param password
+     * @return
+     */
+    @PostMapping("/save")
+    public ResultVO<UserInfo> save(@RequestParam("username") String username, @RequestParam("password") String password) {
+        userService.saveLoginUser(username, password);
+        return ResultVO.success("注册成功");
+    }
 }

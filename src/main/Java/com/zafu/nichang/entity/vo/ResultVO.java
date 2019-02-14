@@ -92,6 +92,10 @@ public class ResultVO<T> implements Serializable {
         return new ResultVO<>(true, ResultEnums.SUCCESS, data);
     }
 
+    public static <T> ResultVO<T> success(String msg) {
+        return new ResultVO<>(true, ResultEnums.SUCCESS.getMessageCode(), msg, null);
+    }
+
     /**
      * 成功的时候 默认信息为操作成功 数据为空
      */

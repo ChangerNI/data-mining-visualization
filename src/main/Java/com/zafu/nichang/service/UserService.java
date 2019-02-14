@@ -21,6 +21,13 @@ public interface UserService {
     UserInfo login(String username, String password);
 
     /**
+     * 保存用户注册信息接口
+     * @param username
+     * @param password
+     * @return
+     */
+    void saveLoginUser(String username, String password);
+    /**
      * 退出登录
      */
     void logout();
