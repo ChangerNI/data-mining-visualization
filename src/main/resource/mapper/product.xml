@@ -44,7 +44,7 @@
     </insert>
 
     <select id="selectProduct" resultType="Product">
-        select *
+        select product_name, min_price, avg_price, max_price,size_type, unit, substr(date_time,1,10) as date_time
         from product_everyday_detail
         <where>
             <if test="productType != null and productType != ''">
