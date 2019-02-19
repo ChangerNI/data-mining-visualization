@@ -45,7 +45,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     /**
-     * 查询产品
+     * 分页查询产品
      * @return
      */
     @Override

@@ -28,11 +28,11 @@ public class ProductServiceImplTest extends ApplicationTests {
 
     @Test
     public void selectProduct() {
-        PageDTO<List<Product>> pageInfo = productService.selectProduct(new ListQueryCriteria("",
-                                                                                                "国产平鱼",
-                                                                                                "2019-01-11",
-                                                                                                "2019-02-12",
-                                                                                                "带头"));
+        PageDTO<List<Product>> pageInfo = productService.selectProduct(new ListQueryCriteria("FRUIT",
+                                                                                                "",
+                                                                                                "",
+                                                                                                "",
+                                                                                                ""));
         System.out.println(pageInfo.getList());
     }
 

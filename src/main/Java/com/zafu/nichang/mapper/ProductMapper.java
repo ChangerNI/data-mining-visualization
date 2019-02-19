@@ -26,7 +26,7 @@ public interface ProductMapper {
     void saveProduct(Product product);
 
     /**
-     * 获取数据接口
+     * 分页查询产品接口
      * @param listQueryCriteria
      * @return
      */
@@ -39,8 +39,6 @@ public interface ProductMapper {
      * @return
      */
     List<Product> getAnalysisProduct(@Param("productName")String productName, @Param("sizeType")String sizeType);
-
-
 
     /**
      * 获取产品的物流信息
@@ -64,4 +62,5 @@ public interface ProductMapper {
      * 获得表中记录条数
      */
     Integer getSizeFromTable();
+
 }
