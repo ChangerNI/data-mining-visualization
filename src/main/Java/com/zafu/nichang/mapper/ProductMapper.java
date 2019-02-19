@@ -63,4 +63,34 @@ public interface ProductMapper {
      */
     Integer getSizeFromTable();
 
+    /**
+     * detail中的ECharts水果数据接口
+     * @return
+     */
+    List<Product> getGraphFruit();
+
+    /**
+     * detail中的ECharts蔬菜数据接口
+     * @return
+     */
+    List<Product> getGraphVegetable();
+
+    /**
+     * detail中的ECharts肉类数据接口
+     * @return
+     */
+    List<Product> getGraphMeat();
+
+    /**
+     * detail中的ECharts水产数据接口
+     * @return
+     */
+    List<Product> getGraphAquatic();
+
+    /**
+     * detail中的ECharts粮油数据接口
+     * @return
+     */
+    List<Product> getGraphOil();
+
 }

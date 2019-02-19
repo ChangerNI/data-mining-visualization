@@ -103,4 +103,33 @@ public class ProductServiceImpl implements ProductService {
     public Integer getSizeFromTable() {
         return productMapper.getSizeFromTable();
     }
+
+    /**
+     * detail中的ECharts数据接口
+     * @return
+     */
+    @Override
+    public List<Product> getGraphFruit() {
+        return productMapper.getGraphFruit();
+    }
+
+    @Override
+    public List<Product> getGraphVegetable() {
+        return productMapper.getGraphVegetable();
+    }
+
+    @Override
+    public List<Product> getGraphMeat() {
+        return productMapper.getGraphMeat();
+    }
+
+    @Override
+    public List<Product> getGraphAquatic() {
+        return productMapper.getGraphAquatic();
+    }
+
+    @Override
+    public List<Product> getGraphOil() {
+        return productMapper.getGraphOil();
+    }
 }

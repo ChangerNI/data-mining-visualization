@@ -101,4 +101,43 @@
         select count(id) as count_number
         from product_everyday_detail
     </select>
+
+    <select id="getGraphFruit" resultType="Product">
+        select product_name, min_price, avg_price, max_price,size_type, unit, substr(date_time,1,10) as date_time
+        from product_everyday_detail
+        where product_type = 'FRUIT'
+          and DATE_SUB(CURDATE(), INTERVAL 7 DAY) <![CDATA[<=]]> date(date_time)
+          and product_name in ('火龙果','鸭梨','新疆阿克苏（冰糖心）','巨峰葡萄','香芒','柠檬','蜜桔','红心蜜柚','麒麟西瓜','国产香蕉')
+    </select>
+
+    <select id="getGraphVegetable" resultType="Product">
+        select product_name, min_price, avg_price, max_price,size_type, unit, substr(date_time,1,10) as date_time
+        from product_everyday_detail
+        where product_type = 'VEGETABLE'
+          and DATE_SUB(CURDATE(), INTERVAL 7 DAY) <![CDATA[<=]]> date(date_time)
+          and product_name in ('玉米','豌豆','大白菜','黄瓜','茄子','番茄','土豆','莴笋','香菇','山药')
+    </select>
+
+    <select id="getGraphMeat" resultType="Product">
+        select product_name, min_price, avg_price, max_price,size_type, unit, substr(date_time,1,10) as date_time
+        from product_everyday_detail
+        where product_type = 'MEAT'
+          and DATE_SUB(CURDATE(), INTERVAL 7 DAY) <![CDATA[<=]]> date(date_time)
+          and product_name in ('牛排骨','羊排骨','羊里脊','鸡胸','鸡翅','鸭腿','整兔','散鸡蛋','五花肉（瘦）','纯瘦肉')
+    </select>
+
+    <select id="getGraphAquatic" resultType="Product">
+        select product_name, min_price, avg_price, max_price,size_type, unit, substr(date_time,1,10) as date_time
+        from product_everyday_detail
+        where product_type = 'AQUATIC'
+          and DATE_SUB(CURDATE(), INTERVAL 7 DAY) <![CDATA[<=]]> date(date_time)
+          and product_name in ('鲤鱼','草鱼','鲫鱼','胖头鱼','鲢鱼','黄鳝','黑鱼','桂鱼','八爪鱼','草虾')
+    </select>
+
+    <select id="getGraphOil" resultType="Product">
+        select product_name, min_price, avg_price, max_price,size_type, unit, substr(date_time,1,10) as date_time
+        from product_everyday_detail
+        where product_type = 'OIL'
+          and product_name in ('东北长粒香米','东北大米','福临门大豆油','金龙鱼大豆油','玉米面','荞麦面','黄豆','绿豆','鲁花花生油','燕麦')
+    </select>
 </mapper>

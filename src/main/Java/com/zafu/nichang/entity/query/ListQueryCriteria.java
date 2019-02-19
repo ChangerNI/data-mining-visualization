@@ -6,11 +6,11 @@ package com.zafu.nichang.entity.query;
  */
 public class ListQueryCriteria extends PageInfo{
 
-    private String productType;
-    private String productName;
-    private String startTime;
-    private String endTime;
-    private String sizeType;
+    private String productType = "";
+    private String productName = "";
+    private String startTime = "";
+    private String endTime = "";
+    private String sizeType = "";
 
     public ListQueryCriteria() {
     }
