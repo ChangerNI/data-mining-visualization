@@ -132,6 +132,7 @@
         where product_type = 'AQUATIC'
           and DATE_SUB(CURDATE(), INTERVAL 7 DAY) <![CDATA[<=]]> date(date_time)
           and product_name in ('鲤鱼','草鱼','鲫鱼','胖头鱼','鲢鱼','黄鳝','黑鱼','桂鱼','八爪鱼','草虾')
+          and size_type in ('750g-1000g','350g-400g','>2000g','>1500g','50g-100g','标桂','活','6头左右/冻')
     </select>
 
     <select id="getGraphOil" resultType="Product">
