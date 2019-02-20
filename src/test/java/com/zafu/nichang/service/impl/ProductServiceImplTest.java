@@ -40,7 +40,7 @@ public class ProductServiceImplTest extends ApplicationTests {
     @Transactional
     @Rollback
     public void saveProduct() {
-        productService.saveProduct(new Product("testName1",1D,2D,3D,"1",
+        productService.saveProduct(new Product(1, "testName1",1D,2D,3D,"1",
                 "1","2018-12-21","12"));
     }
 

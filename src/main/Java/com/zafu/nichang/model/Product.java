@@ -19,6 +19,8 @@ import java.util.LinkedList;
 @AllArgsConstructor
 public class  Product {
 
+
+    private Integer id;
     private String productName;
     private Double minPrice;
     private Double avgPrice;
