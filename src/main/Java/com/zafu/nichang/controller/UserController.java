@@ -1,6 +1,7 @@
 package com.zafu.nichang.controller;
 
 import com.zafu.nichang.entity.vo.ResultVO;
+import com.zafu.nichang.handler.WebSocketTransformHandler;
 import com.zafu.nichang.model.UserInfo;
 import com.zafu.nichang.service.UserService;
 import org.slf4j.Logger;
@@ -23,6 +24,9 @@ public class UserController {
     private static Logger log = LoggerFactory.getLogger(UserController.class);
     @Autowired
     public UserService userService;
+
+    @Autowired
+    private WebSocketTransformHandler webSocketTransformHandler;
 
     /**
      * 登录

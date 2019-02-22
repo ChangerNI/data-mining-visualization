@@ -34,8 +34,9 @@ public class ProductController {
     private ProductService productService;
 
     @PostMapping("/spider")
-    public void insertProduct() {
+    public ResultVO insertProduct() {
         webSpiderService.executeSpiderProductFromWeb();
+        return ResultVO.success("插入数据成功!");
     }
 
     @PostMapping("/query")
