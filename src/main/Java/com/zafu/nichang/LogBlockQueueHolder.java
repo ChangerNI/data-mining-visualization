@@ -27,7 +27,7 @@ public class LogBlockQueueHolder {
         return getMessageDetail(LOG_QUEUE.take());
     }
     private String getMessageDetail(LogDTO logDTO){
-        StringJoiner stringJoiner = new StringJoiner("]", "[", "-");
+        StringJoiner stringJoiner = new StringJoiner("-", "[", "]");
         return stringJoiner.add(logDTO.getTimestamp())
                 .add(logDTO.getLevel())
                 .add(logDTO.getThreadName())
