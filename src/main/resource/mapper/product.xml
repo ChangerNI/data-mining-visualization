@@ -141,4 +141,38 @@
         where product_type = 'OIL'
           and product_name in ('东北长粒香米','东北大米','福临门大豆油','金龙鱼大豆油','玉米面','荞麦面','黄豆','绿豆','鲁花花生油','燕麦')
     </select>
+
+
+    <select id="getProductEnumTree" resultMap="TreeResultMap">
+        select distinct
+                        product_type,
+                        'product_type' type_label,
+                        product_name,
+                        'product_name' name_label,
+                        size_type,
+                        'size_type' size_label
+        from product_everyday_detail
+    </select>
+
+    <resultMap id="TreeResultMap" type="com.zafu.nichang.model.MergeEnumProduct" >
+        <id column="product_type" property="value" jdbcType="VARCHAR" />
+        <result column="type_label" property="label" jdbcType="VARCHAR" />
+        <collection property="children" ofType="com.zafu.nichang.model.MergeEnumProduct">
+            <id column="product_name" property="value" jdbcType="VARCHAR" />
+            <result column="name_label" property="label" jdbcType="VARCHAR" />
+            <collection property="children" ofType="com.zafu.nichang.model.MergeEnumProduct">
+                <id column="size_type" property="value" jdbcType="VARCHAR" />
+                <result column="size_label" property="label" jdbcType="VARCHAR" />
+            </collection>
+        </collection>
+    </resultMap>
+
+
+    <select id="getProductEnumList" resultType="Product">
+        select distinct
+            product_type,
+            product_name,
+            size_type,
+        from product_everyday_detail
+    </select>
 </mapper>

@@ -3,6 +3,7 @@ package com.zafu.nichang.controller;
 import com.zafu.nichang.entity.dto.PageDTO;
 import com.zafu.nichang.entity.query.ListQueryCriteria;
 import com.zafu.nichang.entity.vo.ResultVO;
+import com.zafu.nichang.model.MergeEnumProduct;
 import com.zafu.nichang.model.Product;
 import com.zafu.nichang.service.ProductService;
 import com.zafu.nichang.service.WebSpiderService;
@@ -72,4 +73,9 @@ public class ProductController {
         return ResultVO.success("粮油数据查询成功!", productList);
     }
 
+    @PostMapping("/enum")
+    public ResultVO<List<MergeEnumProduct>> getProductEnum(){
+        List<MergeEnumProduct> productEnumTree = productService.getProductEnumTree();
+        return ResultVO.success("枚举值列表获取成功!", productEnumTree);
+    }
 }

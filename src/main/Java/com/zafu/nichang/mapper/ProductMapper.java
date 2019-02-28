@@ -1,6 +1,7 @@
 package com.zafu.nichang.mapper;
 
 import com.zafu.nichang.entity.query.ListQueryCriteria;
+import com.zafu.nichang.model.MergeEnumProduct;
 import com.zafu.nichang.model.Product;
 import com.zafu.nichang.model.TransportProduct;
 import org.apache.ibatis.annotations.Param;
@@ -92,5 +93,17 @@ public interface ProductMapper {
      * @return
      */
     List<Product> getGraphOil();
+
+    /**
+     * 得到商品枚举值 mybatis实现树形结构接口
+     * @return
+     */
+    List<MergeEnumProduct> getProductEnumTree();
+
+    /**
+     * 得到商品枚举值 java实现树形结构接口
+     * @return
+     */
+    List<Product> getProductEnumList();
 
 }

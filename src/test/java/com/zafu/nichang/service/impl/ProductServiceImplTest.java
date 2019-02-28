@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.zafu.nichang.ApplicationTests;
 import com.zafu.nichang.entity.dto.PageDTO;
 import com.zafu.nichang.entity.query.ListQueryCriteria;
+import com.zafu.nichang.model.MergeEnumProduct;
 import com.zafu.nichang.model.Product;
 import com.zafu.nichang.model.TransportProduct;
 import com.zafu.nichang.service.ProductService;
@@ -66,5 +67,13 @@ public class ProductServiceImplTest extends ApplicationTests {
     public void getSizeFromTable(){
         Integer number = productService.getSizeFromTable();
         System.out.println(number);
+    }
+
+    @Test
+    public void getEnumList(){
+        List<MergeEnumProduct> mergeEnumProducts = productService.getProductEnumTree();
+
+
+        System.out.println(mergeEnumProducts);
     }
 }

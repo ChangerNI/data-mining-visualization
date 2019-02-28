@@ -2,6 +2,7 @@ package com.zafu.nichang.service;
 
 import com.zafu.nichang.entity.dto.PageDTO;
 import com.zafu.nichang.entity.query.ListQueryCriteria;
+import com.zafu.nichang.model.MergeEnumProduct;
 import com.zafu.nichang.model.Product;
 import com.zafu.nichang.model.TransportProduct;
 
@@ -93,4 +94,11 @@ public interface ProductService {
      * @return
      */
     List<Product> getGraphOil();
+
+    /**
+     * 得到商品枚举列表
+     * @return
+     */
+    List<MergeEnumProduct> getProductEnumTree();
+
 }

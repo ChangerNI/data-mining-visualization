@@ -5,6 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.zafu.nichang.entity.dto.PageDTO;
 import com.zafu.nichang.entity.query.ListQueryCriteria;
 import com.zafu.nichang.mapper.ProductMapper;
+import com.zafu.nichang.model.MergeEnumProduct;
 import com.zafu.nichang.model.Product;
 import com.zafu.nichang.model.TransportProduct;
 import com.zafu.nichang.service.ProductService;
@@ -12,7 +13,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import static java.util.stream.Collectors.*;
 
 /**
  * 数据处理入口
@@ -132,4 +137,14 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> getGraphOil() {
         return productMapper.getGraphOil();
     }
+
+    /**
+     * 得到产品枚举值
+     * @return
+     */
+    @Override
+    public List<MergeEnumProduct> getProductEnumTree() {
+        return productMapper.getProductEnumTree();
+    }
+
 }
