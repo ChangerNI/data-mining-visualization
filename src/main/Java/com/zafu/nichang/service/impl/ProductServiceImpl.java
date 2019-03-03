@@ -13,11 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import static java.util.stream.Collectors.*;
 
 /**
  * 数据处理入口
@@ -83,13 +79,29 @@ public class ProductServiceImpl implements ProductService {
         return productMapper.selectTransportMessage();
     }
 
-    /**
-     * 查询产品总销量
-     * @return
-     */
     @Override
-    public List<TransportProduct> selectTotalData() {
-        return productMapper.selectTotalData();
+    public List<TransportProduct> selectVegetableTotalData() {
+        return productMapper.selectVegetableTotalData();
+    }
+
+    @Override
+    public List<TransportProduct> selectFruitTotalData() {
+        return productMapper.selectFruitTotalData();
+    }
+
+    @Override
+    public List<TransportProduct> selectMeatTotalData() {
+        return productMapper.selectMeatTotalData();
+    }
+
+    @Override
+    public List<TransportProduct> selectAquaticTotalData() {
+        return productMapper.selectAquaticTotalData();
+    }
+
+    @Override
+    public List<TransportProduct> selectOilTotalData() {
+        return productMapper.selectOilTotalData();
     }
 
     /**

@@ -49,10 +49,34 @@ public interface ProductService {
     List<TransportProduct> selectTransportMessage();
 
     /**
-     * 获取农产品的总销量
+     * 获取蔬菜类的总销量
      * @return
      */
-    List<TransportProduct> selectTotalData();
+    List<TransportProduct> selectVegetableTotalData();
+
+    /**
+     * 获取水果类的总销量
+     * @return
+     */
+    List<TransportProduct> selectFruitTotalData();
+
+    /**
+     * 获取肉类的总销量
+     * @return
+     */
+    List<TransportProduct> selectMeatTotalData();
+
+    /**
+     * 获取水产类的总销量
+     * @return
+     */
+    List<TransportProduct> selectAquaticTotalData();
+
+    /**
+     * 获取粮油类的总销量
+     * @return
+     */
+    List<TransportProduct> selectOilTotalData();
 
     /**
      * 获得表中每个类别的最大日期

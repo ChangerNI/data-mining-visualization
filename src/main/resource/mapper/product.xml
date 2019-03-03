@@ -70,9 +70,29 @@
         from product_province_percent
     </select>
 
-    <select id="selectTotalData" resultType="TransportProduct">
-        select product_type as type, total_kg
-        from product_total_kg
+    <select id="selectVegetableTotalData" resultType="TransportProduct">
+        select product_name as type, total_kg
+        from product_total_kg where type = '蔬菜类'
+    </select>
+
+    <select id="selectFruitTotalData" resultType="TransportProduct">
+        select product_name as type, total_kg
+        from product_total_kg where type = '水果类'
+    </select>
+
+    <select id="selectMeatTotalData" resultType="TransportProduct">
+        select product_name as type, total_kg
+        from product_total_kg where type = '肉禽蛋类'
+    </select>
+
+    <select id="selectAquaticTotalData" resultType="TransportProduct">
+        select product_name as type, total_kg
+        from product_total_kg where type = '淡水鱼类'
+    </select>
+
+    <select id="selectOilTotalData" resultType="TransportProduct">
+        select product_name as type, total_kg
+        from product_total_kg where type = '粮油类'
     </select>
 
     <select id="getAnalysisProduct" resultType="Product">

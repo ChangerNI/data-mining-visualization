@@ -3,15 +3,15 @@ package com.zafu.nichang.controller;
 import com.zafu.nichang.entity.dto.PageDTO;
 import com.zafu.nichang.entity.query.ListQueryCriteria;
 import com.zafu.nichang.entity.vo.ResultVO;
+import com.zafu.nichang.model.AnalysisProduct;
 import com.zafu.nichang.model.MergeEnumProduct;
 import com.zafu.nichang.model.Product;
+import com.zafu.nichang.model.TransportProduct;
 import com.zafu.nichang.service.ProductService;
 import com.zafu.nichang.service.WebSpiderService;
+import com.zafu.nichang.util.AnalysisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,6 +33,8 @@ public class ProductController {
 
     @Autowired
     private ProductService productService;
+
+    private AnalysisUtil analysisUtil = new AnalysisUtil();;
 
     @PostMapping("/spider")
     public ResultVO insertProduct() {
@@ -77,5 +79,56 @@ public class ProductController {
     public ResultVO<List<MergeEnumProduct>> getProductEnum(){
         List<MergeEnumProduct> productEnumTree = productService.getProductEnumTree();
         return ResultVO.success("枚举值列表获取成功!", productEnumTree);
+    }
+
+    @PostMapping("/transport")
+    public ResultVO<List<TransportProduct>> getTransportMessage(){
+        List<TransportProduct> transportProductList = productService.selectTransportMessage();
+        return ResultVO.success("地图显示数据列表获取成功!",transportProductList);
+    }
+
+    @PostMapping("/vegetable-kg")
+    public ResultVO<List<TransportProduct>> getVegetableTotalKG(){
+        List<TransportProduct> transportProductList = productService.selectVegetableTotalData();
+        return ResultVO.success("蔬菜总重列表获取成功!",transportProductList);
+    }
+
+    @PostMapping("/oil-kg")
+    public ResultVO<List<TransportProduct>> getOilTotalKG(){
+        List<TransportProduct> transportProductList = productService.selectOilTotalData();
+        return ResultVO.success("粮油总重列表获取成功!",transportProductList);
+    }
+
+    @PostMapping("/fruit-kg")
+    public ResultVO<List<TransportProduct>> getFruitTotalKG(){
+        List<TransportProduct> transportProductList = productService.selectFruitTotalData();
+        return ResultVO.success("水果总重列表获取成功!",transportProductList);
+    }
+
+    @PostMapping("/meat-kg")
+    public ResultVO<List<TransportProduct>> getMeatTotalKG(){
+        List<TransportProduct> transportProductList = productService.selectMeatTotalData();
+        return ResultVO.success("肉类总重列表获取成功!",transportProductList);
+    }
+
+    @PostMapping("/aquatic-kg")
+    public ResultVO<List<TransportProduct>> getAquaticTotalKG(){
+        List<TransportProduct> transportProductList = productService.selectAquaticTotalData();
+        return ResultVO.success("水产总重列表获取成功!",transportProductList);
+    }
+
+    @PostMapping("/analysis")
+    public ResultVO<List<Product>> getAnalysisProduct(@RequestParam("productName") String productName,
+                                                      @RequestParam("sizeType") String sizeType){
+        List<Product> analysisProductList = productService.getAnalysisProduct(productName, sizeType);
+        return ResultVO.success("获取分析产品列表成功!",analysisProductList);
+    }
+
+    @PostMapping("/future")
+    public ResultVO<List<String>> getFutureProduct(@RequestParam("productName") String productName,
+                                                      @RequestParam("sizeType") String sizeType){
+        List<Product> analysisProductList = productService.getAnalysisProduct(productName, sizeType);
+        List<String> resultList = analysisUtil.analysisProduct(analysisProductList);
+        return ResultVO.success("获取未来产品列表成功!",resultList);
     }
 }

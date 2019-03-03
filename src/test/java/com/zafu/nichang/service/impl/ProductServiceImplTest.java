@@ -1,6 +1,5 @@
 package com.zafu.nichang.service.impl;
 
-import com.github.pagehelper.PageInfo;
 import com.zafu.nichang.ApplicationTests;
 import com.zafu.nichang.entity.dto.PageDTO;
 import com.zafu.nichang.entity.query.ListQueryCriteria;
@@ -14,8 +13,6 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 /**
  * 产品测试类
@@ -53,7 +50,7 @@ public class ProductServiceImplTest extends ApplicationTests {
 
     @Test
     public void selectTotalData(){
-        List<TransportProduct> transportProductList = productService.selectTotalData();
+        List<TransportProduct> transportProductList = productService.selectVegetableTotalData();
         System.out.println(transportProductList);
     }
 
