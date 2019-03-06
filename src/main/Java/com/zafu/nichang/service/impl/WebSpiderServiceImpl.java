@@ -59,8 +59,8 @@ public class WebSpiderServiceImpl implements WebSpiderService {
                 parseHtmlBlockTask.setProductService(productService);
                 htmlParserExecutorService.submit(parseHtmlBlockTask);
             }
-            messageService.sendMessage();
             waiter.await();
+            messageService.sendMessage();
             logger.info("子线程结束！");
             logger.info("##########################:{}",logBlockQueueHolder.getSize());
         } catch (Exception e) {

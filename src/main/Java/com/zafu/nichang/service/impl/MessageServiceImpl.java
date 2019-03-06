@@ -16,8 +16,8 @@ import java.io.IOException;
 @Slf4j
 @Service
 public class MessageServiceImpl implements MessageService {
-    @Autowired
-    private LogBlockQueueHolder logBlockQueueHolder;
+
+    private LogBlockQueueHolder logBlockQueueHolder= LogBlockQueueHolder.getInstance();
     @Autowired
     private WebSocketTransformHandler webSocketTransformHandler;
 

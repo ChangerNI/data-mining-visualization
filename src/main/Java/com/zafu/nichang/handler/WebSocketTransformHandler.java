@@ -21,7 +21,7 @@ public class WebSocketTransformHandler extends AbstractWebSocketHandler {
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-        websocket.add(session);
+         websocket.add(session);
     }
 
     @Override

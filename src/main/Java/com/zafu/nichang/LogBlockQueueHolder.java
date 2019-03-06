@@ -1,7 +1,6 @@
 package com.zafu.nichang;
 
 import com.zafu.nichang.entity.dto.LogDTO;
-import org.springframework.stereotype.Component;
 
 import java.util.StringJoiner;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -10,7 +9,6 @@ import java.util.concurrent.LinkedBlockingQueue;
  * @author 倪畅
  * @date 2019/2/22 15:53
  */
-@Component
 public class LogBlockQueueHolder {
 
     private static final LogBlockQueueHolder INSTANCE = new LogBlockQueueHolder();
