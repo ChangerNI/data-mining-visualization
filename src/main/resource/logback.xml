@@ -9,6 +9,7 @@
 
     <!--控制台输出 -->
     <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <Filter class="com.zafu.nichang.filter.LogFilter" />
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <Pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread]%logger{56}.%method:%L -%msg%n</Pattern>
         </encoder>

@@ -5,16 +5,15 @@ import ch.qos.logback.core.filter.Filter;
 import ch.qos.logback.core.spi.FilterReply;
 import com.zafu.nichang.LogBlockQueueHolder;
 import com.zafu.nichang.entity.dto.LogDTO;
+import com.zafu.nichang.model.ParseHtmlBlockTask;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.util.Assert;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.StringJoiner;
 
 /**
  * @author 倪畅
@@ -24,22 +23,26 @@ import java.util.StringJoiner;
 @Component
 public class LogFilter extends Filter<ILoggingEvent> {
 
-    @Autowired
-    private LogBlockQueueHolder logBlockQueueHolder;
+    private static final String PARSE_HTML_BLOCK_TASK = ParseHtmlBlockTask.class.getName();
+
+    private LogBlockQueueHolder logBlockQueueHolder = new LogBlockQueueHolder();
 
     @Override
     public FilterReply decide(ILoggingEvent event) {
-        LogDTO logDTO = LogDTO.builder()
-                .message(event.getMessage())
-                .timestamp(convertTimeToString(event.getTimeStamp()))
-                .level(event.getLevel().levelStr)
-                .threadName(event.getThreadName())
-                .className(event.getLoggerName())
-                .build();
-        try {
-            logBlockQueueHolder.putMessage(logDTO);
-        } catch (InterruptedException e) {
-            log.error("", e);
+        // 判断
+        if(PARSE_HTML_BLOCK_TASK.equals(event.getLoggerName())) {
+            LogDTO logDTO = LogDTO.builder()
+                    .message(event.getFormattedMessage())
+                    .timestamp(convertTimeToString(event.getTimeStamp()))
+                    .level(event.getLevel().levelStr)
+                    .threadName(event.getThreadName())
+                    .className(event.getLoggerName())
+                    .build();
+            try {
+                logBlockQueueHolder.putMessage(logDTO);
+            } catch (InterruptedException e) {
+                log.error("消息生成异常：", e);
+            }
         }
         return FilterReply.ACCEPT;
     }

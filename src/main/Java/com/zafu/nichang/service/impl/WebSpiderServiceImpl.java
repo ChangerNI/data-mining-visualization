@@ -1,8 +1,10 @@
 package com.zafu.nichang.service.impl;
 
+import com.zafu.nichang.LogBlockQueueHolder;
 import com.zafu.nichang.enums.ProductEnums;
 import com.zafu.nichang.model.Constant;
 import com.zafu.nichang.model.ParseHtmlBlockTask;
+import com.zafu.nichang.service.MessageService;
 import com.zafu.nichang.service.ProductService;
 import com.zafu.nichang.service.WebSpiderService;
 import org.apache.commons.lang3.concurrent.BasicThreadFactory;
@@ -29,6 +31,11 @@ public class WebSpiderServiceImpl implements WebSpiderService {
     @Autowired
     private ProductService productService;
 
+    @Autowired
+    private LogBlockQueueHolder logBlockQueueHolder;
+
+    @Autowired
+    private MessageService messageService;
     /**
      * 日志
      */
@@ -53,9 +60,10 @@ public class WebSpiderServiceImpl implements WebSpiderService {
                 parseHtmlBlockTask.setProductService(productService);
                 htmlParserExecutorService.submit(parseHtmlBlockTask);
             }
-
+            messageService.sendMessage();
             waiter.await();
             logger.info("子线程结束！");
+            logger.info("##########################:{}",logBlockQueueHolder.getSize());
         } catch (Exception e) {
             logger.info("error：", e);
         }

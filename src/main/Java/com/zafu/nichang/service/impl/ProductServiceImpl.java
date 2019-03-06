@@ -159,4 +159,9 @@ public class ProductServiceImpl implements ProductService {
         return productMapper.getProductEnumTree();
     }
 
+    @Override
+    public List<Product> getProductEnumList() {
+        return productMapper.getProductEnumList();
+    }
+
 }

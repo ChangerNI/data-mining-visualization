@@ -120,9 +120,15 @@ public interface ProductService {
     List<Product> getGraphOil();
 
     /**
-     * 得到商品枚举列表
+     * 得到商品枚举列表 mybatis整合树形结构
      * @return
      */
     List<MergeEnumProduct> getProductEnumTree();
+
+    /**
+     * 得到商品枚举列表 java整合树形结构
+     * @return
+     */
+    List<Product> getProductEnumList();
 
 }

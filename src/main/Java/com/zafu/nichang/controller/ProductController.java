@@ -3,7 +3,6 @@ package com.zafu.nichang.controller;
 import com.zafu.nichang.entity.dto.PageDTO;
 import com.zafu.nichang.entity.query.ListQueryCriteria;
 import com.zafu.nichang.entity.vo.ResultVO;
-import com.zafu.nichang.model.AnalysisProduct;
 import com.zafu.nichang.model.MergeEnumProduct;
 import com.zafu.nichang.model.Product;
 import com.zafu.nichang.model.TransportProduct;
@@ -34,7 +33,7 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    private AnalysisUtil analysisUtil = new AnalysisUtil();;
+    private AnalysisUtil analysisUtil = new AnalysisUtil();
 
     @PostMapping("/spider")
     public ResultVO insertProduct() {

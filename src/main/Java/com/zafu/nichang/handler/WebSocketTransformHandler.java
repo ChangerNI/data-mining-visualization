@@ -1,5 +1,6 @@
 package com.zafu.nichang.handler;
 
+import com.zafu.nichang.LogBlockQueueHolder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
@@ -18,7 +19,6 @@ public class WebSocketTransformHandler extends AbstractWebSocketHandler {
 
     private static CopyOnWriteArrayList<WebSocketSession> websocket = new CopyOnWriteArrayList<>();
 
-
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         websocket.add(session);
@@ -26,8 +26,8 @@ public class WebSocketTransformHandler extends AbstractWebSocketHandler {
 
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception{
-        Thread.sleep(2000);
-        session.sendMessage(new TextMessage("Hello Websocket!"));
+        Thread.sleep(320);
+        sendMessageToAllUser("Hello WebSocket!");
     }
 
     @Override

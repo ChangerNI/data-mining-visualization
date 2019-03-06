@@ -55,7 +55,7 @@ public class ParseHtmlBlockTask implements Runnable {
             Integer tableSize = productService.getSizeFromTable();
             boolean flag = true;
             int pageCount = getMaxPage(productHtml);
-            log.info("解析网页最大页面数成功！");
+            log.info("解析{}网页最大页面数成功！", productEnums.name());
             log.info("productUrl: {}， pageCount: {}, type: {}", productUrl, pageCount, productEnums.name());
             if(tableSize != 0){
                 flag = false;
@@ -106,7 +106,7 @@ public class ParseHtmlBlockTask implements Runnable {
                     productService.insertProduct(filterList);
                     log.info("插入{}类别的第{}页过滤后的基本信息成功！", productEnums, i);
                 }else{
-                    log.info("数据已经最新状态！");
+                    log.info("{}数据已经最新状态！",productEnums);
                     return;
                 }
 
