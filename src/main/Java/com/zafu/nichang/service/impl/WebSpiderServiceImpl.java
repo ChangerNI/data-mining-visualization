@@ -31,8 +31,7 @@ public class WebSpiderServiceImpl implements WebSpiderService {
     @Autowired
     private ProductService productService;
 
-    @Autowired
-    private LogBlockQueueHolder logBlockQueueHolder;
+    private LogBlockQueueHolder logBlockQueueHolder = LogBlockQueueHolder.getInstance();
 
     @Autowired
     private MessageService messageService;

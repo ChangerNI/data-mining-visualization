@@ -13,9 +13,12 @@ import java.util.concurrent.LinkedBlockingQueue;
 @Component
 public class LogBlockQueueHolder {
 
-
+    private static final LogBlockQueueHolder INSTANCE = new LogBlockQueueHolder();
     private static final LinkedBlockingQueue<LogDTO> LOG_QUEUE = new LinkedBlockingQueue<>();
 
+    public static LogBlockQueueHolder getInstance(){
+        return INSTANCE;
+    }
     public void putMessage(LogDTO logDTO) throws InterruptedException {
         LOG_QUEUE.put(logDTO);
     }

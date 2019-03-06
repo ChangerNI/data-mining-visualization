@@ -25,7 +25,7 @@ public class LogFilter extends Filter<ILoggingEvent> {
 
     private static final String PARSE_HTML_BLOCK_TASK = ParseHtmlBlockTask.class.getName();
 
-    private LogBlockQueueHolder logBlockQueueHolder = new LogBlockQueueHolder();
+    private LogBlockQueueHolder logBlockQueueHolder = LogBlockQueueHolder.getInstance();
 
     @Override
     public FilterReply decide(ILoggingEvent event) {
