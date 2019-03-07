@@ -8,6 +8,7 @@ import com.zafu.nichang.model.Product;
 import com.zafu.nichang.model.TransportProduct;
 import com.zafu.nichang.service.ProductService;
 import com.zafu.nichang.service.WebSpiderService;
+import com.zafu.nichang.service.impl.WebSpiderServiceImpl;
 import com.zafu.nichang.util.AnalysisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -38,7 +39,7 @@ public class ProductController {
     @PostMapping("/spider")
     public ResultVO insertProduct() {
         webSpiderService.executeSpiderProductFromWeb();
-        return ResultVO.success("插入数据成功!");
+        return ResultVO.success("插入数据成功!", WebSpiderServiceImpl.maxSize);
     }
 
     @PostMapping("/query")

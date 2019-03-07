@@ -25,7 +25,7 @@ public class MessageServiceImpl implements MessageService {
     public void sendMessage() {
         try {
             while (!logBlockQueueHolder.isEmpty()) {
-                Thread.sleep(320);
+                Thread.sleep(120);
                 webSocketTransformHandler.sendMessageToAllUser(logBlockQueueHolder.takeMessage());
             }
         } catch (IOException e) {

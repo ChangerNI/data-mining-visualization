@@ -20,6 +20,7 @@ public class LogDTO {
     private String threadName;
     private String className;
     private String level;
+    private int size;
 
 
 }

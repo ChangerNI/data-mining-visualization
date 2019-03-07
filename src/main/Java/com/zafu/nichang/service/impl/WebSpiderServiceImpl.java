@@ -27,6 +27,7 @@ import java.util.concurrent.Executors;
 @Service
 public class WebSpiderServiceImpl implements WebSpiderService {
 
+    public static int maxSize = 0;
 
     @Autowired
     private ProductService productService;
@@ -60,9 +61,9 @@ public class WebSpiderServiceImpl implements WebSpiderService {
                 htmlParserExecutorService.submit(parseHtmlBlockTask);
             }
             waiter.await();
+            maxSize = logBlockQueueHolder.getSize();
             messageService.sendMessage();
             logger.info("子线程结束！");
-            logger.info("##########################:{}",logBlockQueueHolder.getSize());
         } catch (Exception e) {
             logger.info("error：", e);
         }

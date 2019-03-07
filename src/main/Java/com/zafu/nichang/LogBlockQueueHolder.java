@@ -1,6 +1,7 @@
 package com.zafu.nichang;
 
 import com.zafu.nichang.entity.dto.LogDTO;
+import com.zafu.nichang.service.impl.WebSpiderServiceImpl;
 
 import java.util.StringJoiner;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -28,6 +29,7 @@ public class LogBlockQueueHolder {
         StringJoiner stringJoiner = new StringJoiner("-", "[", "]");
         return stringJoiner.add(logDTO.getTimestamp())
                 .add(logDTO.getLevel())
+                .add(String.valueOf(WebSpiderServiceImpl.maxSize))
                 .add(logDTO.getThreadName())
                 .add(logDTO.getClassName())
                 .add(logDTO.getMessage()).toString();

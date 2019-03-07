@@ -6,8 +6,8 @@ import ch.qos.logback.core.spi.FilterReply;
 import com.zafu.nichang.LogBlockQueueHolder;
 import com.zafu.nichang.entity.dto.LogDTO;
 import com.zafu.nichang.model.ParseHtmlBlockTask;
+import com.zafu.nichang.service.impl.WebSpiderServiceImpl;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.time.Instant;
@@ -37,6 +37,7 @@ public class LogFilter extends Filter<ILoggingEvent> {
                     .level(event.getLevel().levelStr)
                     .threadName(event.getThreadName())
                     .className(event.getLoggerName())
+                    .size(WebSpiderServiceImpl.maxSize)
                     .build();
             try {
                 logBlockQueueHolder.putMessage(logDTO);
