@@ -129,6 +129,6 @@ public interface ProductService {
      * 得到商品枚举列表 java整合树形结构
      * @return
      */
-    List<Product> getProductEnumList();
+    List<MergeEnumProduct> getProductEnumList();
 
 }

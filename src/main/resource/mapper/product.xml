@@ -192,7 +192,7 @@
         select distinct
             product_type,
             product_name,
-            size_type,
+            size_type
         from product_everyday_detail
     </select>
 </mapper>

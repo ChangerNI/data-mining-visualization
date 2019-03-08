@@ -8,11 +8,13 @@ import com.zafu.nichang.mapper.ProductMapper;
 import com.zafu.nichang.model.MergeEnumProduct;
 import com.zafu.nichang.model.Product;
 import com.zafu.nichang.model.TransportProduct;
+import com.zafu.nichang.service.MessageService;
 import com.zafu.nichang.service.ProductService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -160,8 +162,38 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> getProductEnumList() {
-        return productMapper.getProductEnumList();
+    public List<MergeEnumProduct> getProductEnumList() {
+        List<Product> productList = productMapper.getProductEnumList();
+        List<MergeEnumProduct> mergeEnumProductList = new LinkedList<>();
+
+        for (int i = 0; i < productList.size(); i++) {
+            List<MergeEnumProduct> productNameList = new LinkedList<>();
+            List<MergeEnumProduct> productSizeList = new LinkedList<>();
+
+            productSizeList.add(new MergeEnumProduct("product_size",
+                    productList.get(i).getSizeType(),
+                    null));
+            productNameList.add(new MergeEnumProduct("product_name",
+                    productList.get(i).getProductName(),
+                    productSizeList));
+            if (mergeEnumProductList.size() == 0){
+                mergeEnumProductList.add(new MergeEnumProduct("product_type",
+                        productList.get(i).getProductType(),
+                        productNameList));
+            }
+            for (int j = 0; j < mergeEnumProductList.size(); j++) {
+                if(mergeEnumProductList.get(j).getValue().equals(productList.get(i).getProductType())){
+
+                    mergeEnumProductList.get(j).setChildren(productNameList);
+                }else{
+                    mergeEnumProductList.add(new MergeEnumProduct("product_type",
+                            productList.get(i).getProductType(),
+                            productNameList));
+                }
+            }
+        }
+
+        return mergeEnumProductList;
     }
 
 }
