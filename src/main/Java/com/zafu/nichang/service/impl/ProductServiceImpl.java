@@ -8,7 +8,6 @@ import com.zafu.nichang.mapper.ProductMapper;
 import com.zafu.nichang.model.MergeEnumProduct;
 import com.zafu.nichang.model.Product;
 import com.zafu.nichang.model.TransportProduct;
-import com.zafu.nichang.service.MessageService;
 import com.zafu.nichang.service.ProductService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -183,8 +182,9 @@ public class ProductServiceImpl implements ProductService {
             }
             for (int j = 0; j < mergeEnumProductList.size(); j++) {
                 if(mergeEnumProductList.get(j).getValue().equals(productList.get(i).getProductType())){
-
-                    mergeEnumProductList.get(j).setChildren(productNameList);
+                    List<MergeEnumProduct> tempList = mergeEnumProductList.get(j).getChildren();
+                    tempList.add(((LinkedList<MergeEnumProduct>) productNameList).getFirst());
+                    mergeEnumProductList.get(j).setChildren(tempList);
                 }else{
                     mergeEnumProductList.add(new MergeEnumProduct("product_type",
                             productList.get(i).getProductType(),
