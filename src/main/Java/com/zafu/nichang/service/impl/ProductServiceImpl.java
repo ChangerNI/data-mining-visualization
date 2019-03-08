@@ -16,10 +16,13 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * 数据处理入口
+ *
  * @author 倪畅
  * 2019-01-23
  */
@@ -41,6 +44,7 @@ public class ProductServiceImpl implements ProductService {
 
     /**
      * 新增一条数据
+     *
      * @param product
      */
     @Override
@@ -51,6 +55,7 @@ public class ProductServiceImpl implements ProductService {
 
     /**
      * 分页查询产品
+     *
      * @return
      */
     @Override
@@ -65,6 +70,7 @@ public class ProductServiceImpl implements ProductService {
 
     /**
      * 获得分析商品源数据
+     *
      * @param productName
      * @param sizeType
      * @return
@@ -76,6 +82,7 @@ public class ProductServiceImpl implements ProductService {
 
     /**
      * 查询产品流通信息
+     *
      * @return
      */
     @Override
@@ -110,6 +117,7 @@ public class ProductServiceImpl implements ProductService {
 
     /**
      * 获得表中每个类别的最大日期
+     *
      * @return
      */
     @Override
@@ -127,6 +135,7 @@ public class ProductServiceImpl implements ProductService {
 
     /**
      * detail中的ECharts数据接口
+     *
      * @return
      */
     @Override
@@ -156,6 +165,7 @@ public class ProductServiceImpl implements ProductService {
 
     /**
      * 得到产品枚举值
+     *
      * @return
      */
     @Override
@@ -165,46 +175,22 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<MergeEnumProduct> getProductEnumList() {
-        List<Product> productList = productMapper.getProductEnumList();
         List<MergeEnumProduct> mergeEnumProductList = new LinkedList<>();
+        Map<String, Map<String, List<Product>>> enumKeyValue = getEnumKeyValue(productMapper.getProductEnumList());
 
-        for (int i = 0; i < productList.size(); i++) {
-            LinkedList<MergeEnumProduct> productNameList = new LinkedList<>();
-            List<MergeEnumProduct> productSizeList = new LinkedList<>();
+        enumKeyValue.forEach((typeKey, typeValue) -> {
 
-            productSizeList.add(new MergeEnumProduct("product_size",
-                    productList.get(i).getSizeType(),
-                    null));
-            productNameList.add(new MergeEnumProduct("product_name",
-                    productList.get(i).getProductName(),
-                    productSizeList));
-            if (mergeEnumProductList.size() == 0){
-                mergeEnumProductList.add(new MergeEnumProduct("product_type",
-                        productList.get(i).getProductType(),
-                        productNameList));
-            }else{
-                Optional<MergeEnumProduct> mergeEnumProduct =
-                        indexOf(productList.get(i).getProductType(), mergeEnumProductList);
-                    if(mergeEnumProduct.isPresent()){
-                        List<MergeEnumProduct> tempList = mergeEnumProduct.get().getChildren();
-                        tempList.add(productNameList.getFirst());
-                        mergeEnumProduct.get().setChildren(tempList);
-                    }else {
-                        mergeEnumProductList.add(new MergeEnumProduct("product_type",
-                                productList.get(i).getProductType(),
-                                productNameList));
-                    }
-                }
-            }
+            typeValue.forEach((nameKey, nameValue) -> {
+
+            });
+        });
+
+
         return mergeEnumProductList;
     }
 
-    private Optional<MergeEnumProduct> indexOf(String proType, List<MergeEnumProduct> mergeEnumProducts){
-        for (MergeEnumProduct mergeEnumProduct : mergeEnumProducts) {
-            if (proType.equals(mergeEnumProduct.getValue())) {
-                return Optional.of(mergeEnumProduct);
-            }
-        }
-        return Optional.empty();
+    private Map<String, Map<String, List<Product>>> getEnumKeyValue(List<Product> productList) {
+       return productList.parallelStream().collect(Collectors.groupingBy(Product::getProductType,
+                Collectors.groupingBy(Product::getProductName)));
     }
 }
