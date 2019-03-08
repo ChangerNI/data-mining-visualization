@@ -9,12 +9,14 @@ import com.zafu.nichang.model.MergeEnumProduct;
 import com.zafu.nichang.model.Product;
 import com.zafu.nichang.model.TransportProduct;
 import com.zafu.nichang.service.ProductService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 数据处理入口
@@ -22,6 +24,7 @@ import java.util.List;
  * 2019-01-23
  */
 @Service
+@Slf4j
 public class ProductServiceImpl implements ProductService {
 
     @Resource
@@ -166,7 +169,7 @@ public class ProductServiceImpl implements ProductService {
         List<MergeEnumProduct> mergeEnumProductList = new LinkedList<>();
 
         for (int i = 0; i < productList.size(); i++) {
-            List<MergeEnumProduct> productNameList = new LinkedList<>();
+            LinkedList<MergeEnumProduct> productNameList = new LinkedList<>();
             List<MergeEnumProduct> productSizeList = new LinkedList<>();
 
             productSizeList.add(new MergeEnumProduct("product_size",
@@ -179,21 +182,29 @@ public class ProductServiceImpl implements ProductService {
                 mergeEnumProductList.add(new MergeEnumProduct("product_type",
                         productList.get(i).getProductType(),
                         productNameList));
-            }
-            for (int j = 0; j < mergeEnumProductList.size(); j++) {
-                if(mergeEnumProductList.get(j).getValue().equals(productList.get(i).getProductType())){
-                    List<MergeEnumProduct> tempList = mergeEnumProductList.get(j).getChildren();
-                    tempList.add(((LinkedList<MergeEnumProduct>) productNameList).getFirst());
-                    mergeEnumProductList.get(j).setChildren(tempList);
-                }else{
-                    mergeEnumProductList.add(new MergeEnumProduct("product_type",
-                            productList.get(i).getProductType(),
-                            productNameList));
+            }else{
+                Optional<MergeEnumProduct> mergeEnumProduct =
+                        indexOf(productList.get(i).getProductType(), mergeEnumProductList);
+                    if(mergeEnumProduct.isPresent()){
+                        List<MergeEnumProduct> tempList = mergeEnumProduct.get().getChildren();
+                        tempList.add(productNameList.getFirst());
+                        mergeEnumProduct.get().setChildren(tempList);
+                    }else {
+                        mergeEnumProductList.add(new MergeEnumProduct("product_type",
+                                productList.get(i).getProductType(),
+                                productNameList));
+                    }
                 }
             }
-        }
-
         return mergeEnumProductList;
     }
 
+    private Optional<MergeEnumProduct> indexOf(String proType, List<MergeEnumProduct> mergeEnumProducts){
+        for (MergeEnumProduct mergeEnumProduct : mergeEnumProducts) {
+            if (proType.equals(mergeEnumProduct.getValue())) {
+                return Optional.of(mergeEnumProduct);
+            }
+        }
+        return Optional.empty();
+    }
 }
