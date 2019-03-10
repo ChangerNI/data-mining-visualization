@@ -179,12 +179,18 @@ public class ProductServiceImpl implements ProductService {
         Map<String, Map<String, List<Product>>> enumKeyValue = getEnumKeyValue(productMapper.getProductEnumList());
 
         enumKeyValue.forEach((typeKey, typeValue) -> {
-
             typeValue.forEach((nameKey, nameValue) -> {
+                List<MergeEnumProduct> mergeEnumProductName = new LinkedList<>();
+                List<MergeEnumProduct> mergeEnumProductSize = new LinkedList<>();
 
+                for (int i = 0; i < nameValue.size(); i++) {
+                    //todo 判断 但是感觉思路是不是有问题
+                    mergeEnumProductName.add(new MergeEnumProduct("product_name", nameKey, mergeEnumProductSize));
+                    mergeEnumProductSize.add(new MergeEnumProduct("size_type", nameValue.get(i).getSizeType(), null));
+                    mergeEnumProductList.add(new MergeEnumProduct("product_type", typeKey, mergeEnumProductName));
+                }
             });
         });
-
 
         return mergeEnumProductList;
     }

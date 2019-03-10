@@ -106,7 +106,7 @@
                 and size_type = #{sizeType, jdbcType=VARCHAR}
             </if>
             <if test="productName != null and productName != ''and sizeType != null and sizeType != ''">
-                and DATE_SUB(CURDATE(), INTERVAL 30 DAY) <![CDATA[<=]]> date(date_time) order by date_time
+                and DATE_SUB(CURDATE(), INTERVAL 90 DAY) <![CDATA[<=]]> date(date_time) order by date_time
             </if>
         </where>
     </select>

@@ -34,7 +34,6 @@ public class AnalysisUtil {
      * @return
      */
     public List<String> analysisProduct(List<Product> productList){
-        //todo 想要通过AnalysisProduct类改写，逻辑混乱，方法重写暂缓
         List<String> resultAnalysisList = new LinkedList<>();
         List<String> futureDateList = dateUtil.getFutureDateList();
 
