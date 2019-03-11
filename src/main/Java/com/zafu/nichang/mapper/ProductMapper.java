@@ -45,7 +45,7 @@ public interface ProductMapper {
      * 获取产品的物流信息
      * @return
      */
-    List<TransportProduct> selectTransportMessage();
+    List<MergeEnumProduct> selectTransportMessage();
 
     /**
      * 获取蔬菜类的总销量

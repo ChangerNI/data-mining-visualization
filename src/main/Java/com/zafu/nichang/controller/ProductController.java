@@ -82,8 +82,8 @@ public class ProductController {
     }
 
     @PostMapping("/transport")
-    public ResultVO<List<TransportProduct>> getTransportMessage(){
-        List<TransportProduct> transportProductList = productService.selectTransportMessage();
+    public ResultVO<List<MergeEnumProduct>> getTransportMessage(){
+        List<MergeEnumProduct> transportProductList = productService.selectTransportMessage();
         return ResultVO.success("地图显示数据列表获取成功!",transportProductList);
     }
 

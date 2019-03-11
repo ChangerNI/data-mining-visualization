@@ -65,11 +65,28 @@
         </where>
     </select>
 
-    <select id="selectTransportMessage" resultType="TransportProduct">
-        select type, province, percent
+    <select id="selectTransportMessage" resultMap="TransportResultMap">
+        select type,
+               'type_label' type_label,
+               province,
+               'province_label' province_label,
+               percent,
+               'percent_label' percent_label
         from product_province_percent
     </select>
 
+    <resultMap id="TransportResultMap" type="com.zafu.nichang.model.MergeEnumProduct" >
+        <id column="province" property="value" jdbcType="VARCHAR" />
+        <result column="province_label" property="label" jdbcType="VARCHAR" />
+        <collection property="children" ofType="com.zafu.nichang.model.MergeEnumProduct">
+            <id column="type" property="value" jdbcType="VARCHAR" />
+            <result column="type_label" property="label" jdbcType="VARCHAR" />
+            <collection property="children" ofType="com.zafu.nichang.model.MergeEnumProduct">
+                <id column="percent" property="value" jdbcType="VARCHAR" />
+                <result column="percent_label" property="label" jdbcType="VARCHAR" />
+            </collection>
+        </collection>
+    </resultMap>
     <select id="selectVegetableTotalData" resultType="TransportProduct">
         select product_name as type, total_kg
         from product_total_kg where type = '蔬菜类'

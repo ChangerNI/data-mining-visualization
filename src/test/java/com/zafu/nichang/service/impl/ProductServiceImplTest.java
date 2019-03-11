@@ -44,7 +44,7 @@ public class ProductServiceImplTest extends ApplicationTests {
 
     @Test
     public void selectTransportMessage(){
-        List<TransportProduct> transportProductList = productService.selectTransportMessage();
+        List<MergeEnumProduct> transportProductList = productService.selectTransportMessage();
         System.out.println(transportProductList);
     }
 

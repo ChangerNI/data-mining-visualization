@@ -46,7 +46,7 @@ public interface ProductService {
      * 获取农产品的物流信息
      * @return
      */
-    List<TransportProduct> selectTransportMessage();
+    List<MergeEnumProduct> selectTransportMessage();
 
     /**
      * 获取蔬菜类的总销量
