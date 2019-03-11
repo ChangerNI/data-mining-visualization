@@ -2,6 +2,7 @@ package com.zafu.nichang.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.zafu.nichang.constants.ProductConstants;
 import com.zafu.nichang.entity.dto.PageDTO;
 import com.zafu.nichang.entity.query.ListQueryCriteria;
 import com.zafu.nichang.mapper.ProductMapper;
@@ -178,17 +179,34 @@ public class ProductServiceImpl implements ProductService {
         List<MergeEnumProduct> mergeEnumProductList = new LinkedList<>();
         Map<String, Map<String, List<Product>>> enumKeyValue = getEnumKeyValue(productMapper.getProductEnumList());
 
-        enumKeyValue.forEach((typeKey, typeValue) -> {
-            typeValue.forEach((nameKey, nameValue) -> {
-                List<MergeEnumProduct> mergeEnumProductName = new LinkedList<>();
-                List<MergeEnumProduct> mergeEnumProductSize = new LinkedList<>();
+//        enumKeyValue.forEach((typeKey, typeValue) -> {
+//            typeValue.forEach((nameKey, nameValue) -> {
+//                List<MergeEnumProduct> mergeEnumProductName = new LinkedList<>();
+//                List<MergeEnumProduct> mergeEnumProductSize = new LinkedList<>();
+//
+//                for (int i = 0; i < nameValue.size(); i++) {
+//                    //todo 判断 但是感觉思路是不是有问题
+//                    mergeEnumProductName.add(new MergeEnumProduct("product_name", nameKey, mergeEnumProductSize));
+//                    mergeEnumProductSize.add(new MergeEnumProduct("size_type", nameValue.get(i).getSizeType(), null));
+//                    mergeEnumProductList.add(new MergeEnumProduct("product_type", typeKey, mergeEnumProductName));
+//                }
+//            });
+//        });
 
-                for (int i = 0; i < nameValue.size(); i++) {
-                    //todo 判断 但是感觉思路是不是有问题
-                    mergeEnumProductName.add(new MergeEnumProduct("product_name", nameKey, mergeEnumProductSize));
-                    mergeEnumProductSize.add(new MergeEnumProduct("size_type", nameValue.get(i).getSizeType(), null));
-                    mergeEnumProductList.add(new MergeEnumProduct("product_type", typeKey, mergeEnumProductName));
-                }
+        enumKeyValue.forEach((typeKey, typeValue) -> {
+            // 添加产品类型
+            MergeEnumProduct productType = new MergeEnumProduct(ProductConstants.PRODUCT_TYPE, typeKey);
+            mergeEnumProductList.add(productType);
+            typeValue.forEach((nameKey, nameValue) -> {
+                // 添加产品名称
+                MergeEnumProduct productName = new MergeEnumProduct(ProductConstants.PRODUCT_NAME, nameKey);
+                productType.addChild(productName);
+
+                // 添加名称下的size类型
+                List<MergeEnumProduct> sizeTypeList = nameValue.stream().map(Product::getSizeType)
+                        .map(sizeType -> new MergeEnumProduct(ProductConstants.SIZE_TYPE, sizeType))
+                        .collect(Collectors.toCollection(LinkedList::new));
+                productName.setChildren(sizeTypeList);
             });
         });
 
@@ -196,7 +214,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     private Map<String, Map<String, List<Product>>> getEnumKeyValue(List<Product> productList) {
-       return productList.parallelStream().collect(Collectors.groupingBy(Product::getProductType,
+        return productList.parallelStream().collect(Collectors.groupingBy(Product::getProductType,
                 Collectors.groupingBy(Product::getProductName)));
     }
 }
