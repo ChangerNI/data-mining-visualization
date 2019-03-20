@@ -1,4 +1,4 @@
-package com.zafu.nichang;
+package com.zafu.nichang.util;
 
 import com.zafu.nichang.entity.dto.LogDTO;
 import com.zafu.nichang.service.impl.WebSpiderServiceImpl;

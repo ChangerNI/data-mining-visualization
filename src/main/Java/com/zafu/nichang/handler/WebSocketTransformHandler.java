@@ -1,6 +1,5 @@
 package com.zafu.nichang.handler;
 
-import com.zafu.nichang.LogBlockQueueHolder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;

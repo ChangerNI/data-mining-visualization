@@ -1,6 +1,6 @@
 package com.zafu.nichang.service.impl;
 
-import com.zafu.nichang.LogBlockQueueHolder;
+import com.zafu.nichang.util.LogBlockQueueHolder;
 import com.zafu.nichang.enums.ProductEnums;
 import com.zafu.nichang.model.Constant;
 import com.zafu.nichang.model.ParseHtmlBlockTask;

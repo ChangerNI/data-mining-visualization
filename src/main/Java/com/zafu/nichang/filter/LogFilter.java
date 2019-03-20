@@ -3,7 +3,7 @@ package com.zafu.nichang.filter;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.filter.Filter;
 import ch.qos.logback.core.spi.FilterReply;
-import com.zafu.nichang.LogBlockQueueHolder;
+import com.zafu.nichang.util.LogBlockQueueHolder;
 import com.zafu.nichang.entity.dto.LogDTO;
 import com.zafu.nichang.model.ParseHtmlBlockTask;
 import com.zafu.nichang.service.impl.WebSpiderServiceImpl;

@@ -1,6 +1,6 @@
 package com.zafu.nichang.service.impl;
 
-import com.zafu.nichang.LogBlockQueueHolder;
+import com.zafu.nichang.util.LogBlockQueueHolder;
 import com.zafu.nichang.handler.WebSocketTransformHandler;
 import com.zafu.nichang.service.MessageService;
 import lombok.extern.slf4j.Slf4j;
